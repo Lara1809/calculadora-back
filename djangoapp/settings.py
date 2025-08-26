@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'calculadora',
     'usuario',
+    'contas',
 ]
 
 MIDDLEWARE = [
