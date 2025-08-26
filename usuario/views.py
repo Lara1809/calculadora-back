@@ -43,15 +43,33 @@ def login(request):
     return render(request, '')
 
 def exibir_usuario(request):
-    usuario = nome 
-    email = email
-    return render(request, '', {'usuario': usuario, 'email': email})
+    usuario = {
+        "username": user.username,
+        "email": user.email,
+    }
+    return render(request, '', usuario)
 
 def editar_usuario(request):
-    pass
+    user = request.user  # pega o usuário logado
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+
+        user.username = username
+        user.email = email
+
+        messages.success(request, "Perfil atualizado com sucesso!")
+        return redirect('')
 
 def excluir_usuario(request):
-    pass
+    user = request.user
+
+    if request.method == 'POST':
+        user.delete()          # apaga o usuário do banco
+        logout(request)        # encerra a sessão
+        messages.success(request, "Sua conta foi excluída com sucesso.")
+        return redirect('')  # volta para tela de login
 
 def logout(request):
     logout()
