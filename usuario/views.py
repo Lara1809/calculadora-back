@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages  #framework de mensagens
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib.auth import logout
 
 def home_view(request):
     return render(request, 'home.html')
@@ -10,7 +12,8 @@ def home_view(request):
 def cadastrar(request):
     if request.method == 'POST':  # se o usuário enviou o formulário
         username = request.POST.get('username')
-        email = request.POST.get('email')
+        picture = request.POST.get('picture')
+        salario = request.POST.get('salario')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
@@ -19,11 +22,8 @@ def cadastrar(request):
             messages.error(request, "As senhas não conferem.")
         elif User.objects.filter(username=username).exists():   # se o usuario ja existe
             messages.error(request, "Esse usuário já existe.")
-        elif User.objects.filter(email=email).exists():   # se ja existe um usuario com esse email
-            messages.error(request, "Esse e-mail já está cadastrado.")
-        else:
-            # Cria o novo usuário no banco de dados
-            user = User.objects.create_user(username=username, email=email, password=password1)
+        else:            # Cria o novo usuário no banco de dados
+            user = User.objects.create_user(username=username, picture=picture, salario=salario, password=password1)
             user.save()
             messages.success(request, "Conta criada com sucesso!")   # mensagem se sucesso
 
@@ -32,8 +32,8 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        # Verifica se existe um usuário com esse username e senha
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)    # Verifica se existe um usuário com esse username e senha
+
         if user is not None:  
             login(request, user)  # cria a sessão do usuário
             return redirect('')  # redireciona para proxima página
@@ -45,7 +45,8 @@ def login(request):
 def exibir_usuario(request):
     usuario = {
         "username": user.username,
-        "email": user.email,
+        "salario": user.salario,
+        "picture": user.picture
     }
     return render(request, '', usuario)
 
@@ -54,10 +55,13 @@ def editar_usuario(request):
 
     if request.method == 'POST':
         username = request.POST.get('username')
-        email = request.POST.get('email')
+        picture = request.POST.get('picture')
+        salario = request.POST.get('salario')
 
         user.username = username
-        user.email = email
+        user.picture = picture
+        user.salario = salario
+        user.save()
 
         messages.success(request, "Perfil atualizado com sucesso!")
         return redirect('')

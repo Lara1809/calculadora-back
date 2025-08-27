@@ -1,17 +1,12 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 def salario(request):
     if request.method == 'POST':
-        salario = float(request.POST.get('salario', 0))
         extra = float(request.POST.get('extra', 0))
-
-        total_salario = salario + extra
-
-        resultado = {
-            'salario': total_salario
-        }
+        salario = user.salario + extra
 
 def calculo_casa(request):
     resultado = None
