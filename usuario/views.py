@@ -17,15 +17,12 @@ def cadastrar(request):
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
-        # Verificações antes de criar o usuário
         if password1 != password2:          # se as duas senhas sao diferentes
             messages.error(request, "As senhas não conferem.")
-        elif User.objects.filter(username=username).exists():   # se o usuario ja existe
-            messages.error(request, "Esse usuário já existe.")
         else:            # Cria o novo usuário no banco de dados
             user = User.objects.create_user(username=username, picture=picture, salario=salario, password=password1)
+            usuario = Usuario.objects.create(user=user)
             user.save()
-            messages.success(request, "Conta criada com sucesso!")   # mensagem se sucesso
 
 def login(request):
     if request.method == 'POST':  # se o usuário enviou o formulário
@@ -63,7 +60,6 @@ def editar_usuario(request):
         user.salario = salario
         user.save()
 
-        messages.success(request, "Perfil atualizado com sucesso!")
         return redirect('')
 
 def excluir_usuario(request):
@@ -72,7 +68,6 @@ def excluir_usuario(request):
     if request.method == 'POST':
         user.delete()          # apaga o usuário do banco
         logout(request)        # encerra a sessão
-        messages.success(request, "Sua conta foi excluída com sucesso.")
         return redirect('')  # volta para tela de login
 
 def logout(request):
