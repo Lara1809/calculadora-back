@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User 
+from usuario.models import Usuario, Empresa, Servico, Categoria
 
 # Create your models here.
 class Conta(models.Model):
