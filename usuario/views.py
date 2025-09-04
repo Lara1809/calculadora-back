@@ -3,8 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from .forms import LoginForm, CadastrarForm
-from .models import Role, Usuario
-
+from .models import Role, Usuario, Plano
 
 def home_view(request):
     return render(request, 'home.html')
@@ -44,26 +43,14 @@ def login(request):
 
 def exibir_usuario(request):
     usuario = {
-        "username": user.username,
-        "salario": user.salario,
-        "picture": user.picture
+        "user": Usuario.user,
+        "plano": Usuario.plano,
+        "picture": Usuario.picture,
     }
     return render(request, '', usuario)
 
 def editar_usuario(request):
-    user = request.user  # pega o usuário logado
-
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        picture = request.POST.get('picture')
-        salario = request.POST.get('salario')
-
-        user.username = username
-        user.picture = picture
-        user.salario = salario
-        user.save()
-
-        return redirect('')
+    pass
 
 def excluir_usuario(request):
     user = request.user
