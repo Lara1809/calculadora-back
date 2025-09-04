@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User 
-from usuario.models import Usuario, Empresa, Servico, Categoria
+from usuario.models import Usuario
+from .models import Empresa, Servico, Categoria
 
 # Create your models here.
 class Conta(models.Model):
@@ -17,3 +18,27 @@ class Conta(models.Model):
 
     def __str__(self):
         return f"{self.descricao} - {self.usuario.user.username}"
+
+class Empresa(models.Model):
+    nome = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True)
+    servico = models.CharField(max_length=50)
+    endereco = models.TextField()
+    numero_celular = models.DecimalField(max_digits=9, decimal_places=0)
+
+    def __str__(self):
+        return self.nome
+
+class Servico(models.Model):
+    slug = models.SlugField(unique=True)
+    tipo_servico = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.tipo_servico
+
+class Categoria(models.Model):
+    slug = models.SlugField(unique=True)
+    nome = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome

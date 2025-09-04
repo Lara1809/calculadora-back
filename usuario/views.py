@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages  #framework de mensagens
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import logout
+from .forms import LoginForm, CadastrarForm
+from .models import Role, Usuario
+
 
 def home_view(request):
     return render(request, 'home.html')
@@ -10,34 +12,35 @@ def home_view(request):
 # usuario
 
 def cadastrar(request):
-    if request.method == 'POST':  # se o usuário enviou o formulário
-        username = request.POST.get('username')
-        picture = request.POST.get('picture')
-        salario = request.POST.get('salario')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
+    if request.method == 'POST':
+        form = CadastrarForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            role = form.cleaned_data['role']
 
-        if password1 != password2:          # se as duas senhas sao diferentes
-            messages.error(request, "As senhas não conferem.")
-        else:            # Cria o novo usuário no banco de dados
-            user = User.objects.create_user(username=username, picture=picture, salario=salario, password=password1)
-            usuario = Usuario.objects.create(user=user)
-            user.save()
+            user = User.objects.create_user(username=username, password=password)
+
+            usuario = Usuario.objects.create(user=user, role=role)
+
+            return redirect('') 
+    else:
+        form = CadastrarForm()
 
 def login(request):
-    if request.method == 'POST':  # se o usuário enviou o formulário
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('')
+    else:
+        form = LoginForm()
 
-        user = authenticate(request, username=username, password=password)    # Verifica se existe um usuário com esse username e senha
-
-        if user is not None:  
-            login(request, user)  # cria a sessão do usuário
-            return redirect('')  # redireciona para proxima página
-        else:
-            messages.error(request, "Usuário ou senha inválidos")   #mensagem de erro
-
-    return render(request, '')
+    return render(request, '', {'form': form})
 
 def exibir_usuario(request):
     usuario = {
@@ -71,8 +74,8 @@ def excluir_usuario(request):
         return redirect('')  # volta para tela de login
 
 def logout(request):
-    logout()
-    return redirect('usuario_login')
+    logout(request)
+    return redirect('home')
 
 # plano
 
