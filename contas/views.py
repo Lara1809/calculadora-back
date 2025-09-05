@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from .models import Conta, Empresa, Servico, Categoria
 
 # Create your views here.
@@ -47,6 +46,48 @@ def excluir_conta(request):
     conta = request.conta
 
     if request.method == 'POST':
-        conta.delete()          # apaga o usuário do banco
-        return redirect('')  # volta para tela de login
+        conta.delete()          # apaga a conta do banco
+        return redirect('') 
 
+def calculos(request):
+    if request.method == 'POST':
+        salario = float(request.POST.get('salario', 0))
+        extra = float(request.POST.get('extra', 0))
+        salario_total = salario + extra
+
+    total_contas = 0
+    for i in Categoria:
+        pass
+
+def criar_categorias(request):
+    categorias = (
+        "Casa",
+        "Alimentação",
+        "Saúde e Beleza",
+        "Transporte",
+        "Educação",
+        "Extras",
+        "Comparação"
+    )
+    
+    for nome in categorias:
+        Categoria.objects.create(
+            nome=nome,
+            slug=nome
+        )
+
+    return render(request, '', {'categorias': categorias})
+
+def servicos(request):
+    servicos = Servico.objects.create()
+    servicos_por_categoria = {
+        "Casa": ["Aluguel", "Agua", "Luz", "Gas", "TV acabo", "Internet", "Telefone", "Servicos/Produtos", "Outros"],
+        "Alimentação": ["Mercado", "Fora", "Hort frut", "Feira", "Outros"],
+        "Transporte": ["Publico", "Gasolina", "Manutencao", "Seguro", "Táxi"],
+        "Saúde e Beleza": ["Farmácia", "Plano", "Exames", "Produtos", "Academia", "Salao", "Outros"],
+        "Educação": ["Mensalidade", "Material Escolar", "Cursos", "Outros"],
+        "Extras": ["Viagens", "Roupas", "Cinema", "Shows", "Festas", "Presentes", "Animais", "Outros"],
+        "Comparação": []
+    }
+
+    return render(request, '', {'servicos': servicos})
