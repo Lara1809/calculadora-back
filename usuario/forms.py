@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Role
+from .models import Usuario
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -26,12 +26,6 @@ class CadastrarForm(forms.Form):
     password_confirm = forms.CharField(
         label="Confirme a Senha",
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
-    role = forms.ModelChoiceField(
-        queryset=Role.objects.all(),
-        label="Escolha um Cargo",
-        widget=forms.Select(attrs={'class': 'form-control'}),
-        empty_label="Selecione um Cargo"
     )
 
     def clean(self):

@@ -1,12 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User 
 
-class Role(models.Model):
-    nome = models.CharField(max_length=20)
-
-    def __str__(self):
-        return f"{self.id} - {self.nome}"
-
 class Usuario(models.Model):
     plano = models.ForeignKey(Plano, on_delete=models.SET_NULL, null=True, related_name="usuarios")
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="perfil")

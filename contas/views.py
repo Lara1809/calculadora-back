@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Conta, Empresa, Servico, Categoria
+from django.contrib import messages
+
 
 # Create your views here.
 

@@ -3,7 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from .forms import LoginForm, CadastrarForm
-from .models import Role, Usuario, Plano
+from .models import Usuario, Plano
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import render, redirect, get_object_or_404
 
 def home_view(request):
     return render(request, 'home.html')
@@ -26,6 +31,7 @@ def cadastrar(request):
     else:
         form = CadastrarForm()
 
+@csrf_exempt  #  REMOVER DA PRODUCAO
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -35,13 +41,20 @@ def login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                    return JsonResponse({'success': True, 'message': 'Login realizado com sucesso!'})
+
+                messages.success(request, 'Login realizado com sucesso!')
                 return redirect('')
     else:
+        messages.error(request, 'nome ou senha inválidos.')
         form = LoginForm()
 
     return render(request, '', {'form': form})
 
-def exibir_usuario(request):
+@login_required
+def exibir_usuario(request, id=None):
+    usuario = get_object_or_404(Usuario, id=id)
     usuario = {
         "user": Usuario.user,
         "plano": Usuario.plano,
@@ -49,9 +62,11 @@ def exibir_usuario(request):
     }
     return render(request, '', usuario)
 
+@login_required
 def editar_usuario(request):
     pass
 
+@login_required
 def excluir_usuario(request):
     user = request.user
 
@@ -60,6 +75,7 @@ def excluir_usuario(request):
         logout(request)        # encerra a sessão
         return redirect('')  # volta para tela de login
 
+@login_required
 def logout(request):
     logout(request)
     return redirect('home')
