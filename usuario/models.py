@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User 
 
 class Usuario(models.Model):
-    plano = models.ForeignKey(Plano, on_delete=models.SET_NULL, null=True, related_name="usuarios")
+    plano = models.ForeignKey('Plano', on_delete=models.SET_NULL, null=True, related_name="usuarios")
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="perfil")
     picture = models.ImageField(upload_to="usuarios/", null=True, blank=True)
     is_activate = models.BooleanField(default=True)

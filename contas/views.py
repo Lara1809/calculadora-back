@@ -39,10 +39,7 @@ def criar_conta(request):
         conta.save()
 
 def exibir_conta(request):
-    context = {
-        'conta': conta
-    }
-    return render(request, '', context)
+    pass
 
 def excluir_conta(request):
     conta = request.conta
