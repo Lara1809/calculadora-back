@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 def home_view(request):
     return render(request, 'home.html')
 
-# usuario
+# usuario 
 
 def cadastrar(request):
     if request.method == 'POST':
@@ -56,7 +56,15 @@ def login(request):
                     return JsonResponse({'success': False, 'message': 'Nome ou senha inválidos.'})
 
                 messages.error(request, 'Nome ou senha inválidos.')
+
+        else:
+            form = LoginForm()
+
     return render(request, 'login.html', {'form': form})
+
+@login_required
+def boas_vindas(request):
+    return render(request, '')
 
 @login_required
 def exibir_usuario(request, id=None):
@@ -84,11 +92,14 @@ def logout(request):
 
 # plano
 
+@login_required
 def criar_plano(request):
     pass
 
+@login_required
 def exibir_plano(request):
     pass
 
+@login_required
 def excluir_plano(request):
     pass

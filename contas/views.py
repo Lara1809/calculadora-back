@@ -58,6 +58,12 @@ def calculos(request):
     for i in Categoria:
         pass
 
+def historico(request):
+    return render(request, '')
+
+def comparacao(request):
+    return render(request, '')
+
 def criar_categorias(request):
     categorias = (
         "Casa",
