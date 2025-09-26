@@ -19,6 +19,7 @@ def cadastrar(request):
         if form.is_valid():
             # Extrai o nome de usuário e a senha do formulário.
             username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
             user = User.objects.create_user(username=username, password=password) #cria um usuario
@@ -27,7 +28,7 @@ def cadastrar(request):
             auth_login(request, user)
             
             messages.success(request, f'Usuário {username} cadastrado com sucesso!')
-            return redirect('exibir_perfil')
+            return redirect('exibir_perfil.html')
     else:
         form = CadastrarForm()
 
@@ -51,7 +52,7 @@ def login(request):
                     return JsonResponse({'success': True, 'message': 'Login realizado com sucesso!'})
                     #mensagem de sucesso
                 messages.success(request, 'Login realizado com sucesso!')
-                return redirect('exibir_usuario')
+                return redirect('boas_vindas.html')
             else:
                 if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                     return JsonResponse({'success': False, 'message': 'Nome ou senha inválidos.'})
@@ -61,11 +62,11 @@ def login(request):
         else:
             form = LoginForm()
 
-    return render(request, '', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 @login_required
 def boas_vindas(request):
-    return render(request, '')
+    return render(request, 'boas_vindas')
 
 @login_required
 def exibir_perfil(request, id=None):

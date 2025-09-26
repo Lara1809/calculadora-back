@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Easy Life - Cadastro</title>
+    <link rel="stylesheet" href="styles.css"> 
+{% endblock %}
+
+<body>
+
+    <main class="auth-container">
+        {% block main %}
+        <div class="login-column">
+            <div class="login-content">
+                <img src="{% static 'logo.png' %}" alt="Porquinho-cofre" class="piggy-image">
+                <h1 class="login-title">BEM-VINDO(A)<br>DE VOLTA!</h1>
+                <p class="login-text">
+                    Entre diretamente com o login que já fez
+                </p>
+                <a href="http://127.0.0.1:8000/usuario/login/">
+                            <link-button type="submit" class="button-primary-3">Entrar</button>
+                          </a>
+            </div>
+        </div>
+
+        <div class="register-column">
+            <div class="register-content">
+                <h2 class="register-title">CRIAR CONTA</h2>
+                <p class="register-subtitle">Use seu email para registrar</p>
+                
+                <form class="register-form">
+                    <input type="text" placeholder="Nome" class="form-input">
+                    <input type="email" placeholder="Email" class="form-input">
+                    <input type="password" placeholder="Senha" class="form-input">
+                    <a href="http://127.0.0.1:8000/usuario/cadastrar/">
+                        <link-button type="submit" class="button-secondary-3">Entrar</button>
+                      </a>
+                </form>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        <p> oii</p>
+        {% endblock %}
+    </footer>
+    
+</body>
+</html>
