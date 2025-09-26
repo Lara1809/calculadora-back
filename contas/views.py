@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Conta, Empresa, Servico, Categoria
 from django.contrib import messages
-
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 
+@login_required
 def criar_conta(request):
     if request.method == 'POST':
         empresa_id = request.POST.get('empresa')
@@ -38,16 +40,23 @@ def criar_conta(request):
         )
         conta.save()
 
+@login_required
 def exibir_conta(request):
     pass
 
-def excluir_conta(request):
-    conta = request.conta
+@login_required
+def excluir_conta(request, conta_id):
+    conta = get_object_or_404(Conta, id=conta_id, usuario=request.user)
+    if request.method == 'POST':
+        conta.delete()          # Apaga a conta do banco.
+        messages.success(request, "Conta excluída com sucesso!")
+        return redirect('')
 
     if request.method == 'POST':
         conta.delete()          # apaga a conta do banco
         return redirect('') 
 
+@login_required
 def calculos(request):
     if request.method == 'POST':
         salario = float(request.POST.get('salario', 0))
@@ -58,9 +67,11 @@ def calculos(request):
     for i in Categoria:
         pass
 
+@login_required
 def historico(request):
     return render(request, '')
 
+@login_required
 def comparacao(request):
     return render(request, '')
 
