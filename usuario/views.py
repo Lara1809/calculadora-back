@@ -22,8 +22,8 @@ def cadastrar(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
-            user = User.objects.create_user(username=username, password=password) #cria um usuario
-            Usuario.objects.create(user=user)  #cria um perfil associado
+            user = User.objects.create_user(username=username, email=email, password=password)
+            Usuario.objects.create(user=user)  # Cria um perfil associado.
             #login automatico
             auth_login(request, user)
             
@@ -36,14 +36,13 @@ def cadastrar(request):
 
 @csrf_exempt  #  REMOVER DA PRODUCAO
 def login(request):
-    form = LoginForm(request.POST or None)
-
     if request.method == 'POST':
+        form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             #autentifica o usuario
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, email=email, password=password)
             
             if user is not None:
                 auth_login(request, user)
@@ -59,10 +58,7 @@ def login(request):
                     #mensagem de erro
                 messages.error(request, 'Nome ou senha inválidos.')
 
-        else:
-            form = LoginForm()
-
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login.html')
 
 @login_required
 def boas_vindas(request):
