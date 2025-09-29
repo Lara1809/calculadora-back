@@ -23,12 +23,11 @@ def cadastrar(request):
             password = form.cleaned_data['password']
 
             user = User.objects.create_user(username=username, email=email, password=password)
-            Usuario.objects.create(user=user)  # Cria um perfil associado.
-            #login automatico
+            Usuario.objects.create(user=user)  
             auth_login(request, user)
             
             messages.success(request, f'Usuário {username} cadastrado com sucesso!')
-            return redirect('exibir_perfil.html')
+            return redirect('boas_vindas.html')
     else:
         form = CadastrarForm()
 
@@ -36,33 +35,27 @@ def cadastrar(request):
 
 @csrf_exempt  #  REMOVER DA PRODUCAO
 def login(request):
+    form = LoginForm(request.POST or None)
+
     if request.method == 'POST':
-        form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
+            username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            #autentifica o usuario
-            user = authenticate(request, email=email, password=password)
+            user = authenticate(request, username=username, password=password)
             
             if user is not None:
                 auth_login(request, user)
-
-                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                    return JsonResponse({'success': True, 'message': 'Login realizado com sucesso!'})
-                    #mensagem de sucesso
                 messages.success(request, 'Login realizado com sucesso!')
-                return redirect('boas_vindas.html')
+                return redirect('boas_vindas')
+            
             else:
-                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                    return JsonResponse({'success': False, 'message': 'Nome ou senha inválidos.'})
-                    #mensagem de erro
                 messages.error(request, 'Nome ou senha inválidos.')
 
     return render(request, 'login.html')
 
 @login_required
 def boas_vindas(request):
-    return render(request, 'boas_vindas')
+    return render(request, 'boas_vindas.html')
 
 @login_required
 def exibir_perfil(request, id=None):
