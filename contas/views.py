@@ -9,11 +9,11 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 CATEGORIAS_CALCULO = {
     'casa': ['aluguel', 'agua', 'luz', 'gas', 'internet', 'telefone', 'servicos_prestacoes', 'outros_casa'],
-    'alimentacao': ['mercado', 'fora', 'hort_frut', 'feira', 'outros'],
-    'transporte': ['publico', 'gasolina', 'manutencao', 'seguro', 'taxi'],
-    'saude_e_beleza': ['farmacia', 'plano', 'exames', 'produtos', 'academia', 'salao', 'outros'],
-    'educacao': ['mensalidade', 'material_escolar', 'cursos', 'outros'],
-    'extras': ['viagens', 'roupas', 'cinema', 'shows', 'festas', 'presentes', 'animais', 'outros'],
+    'alimentacao': ['mercado', 'fora', 'hort_frut', 'feira', 'outros_alimentacao'],
+    'transporte': ['publico', 'gasolina', 'manutencao', 'seguro', 'taxi', 'outros_transporte'],
+    'saude_e_beleza': ['farmacia', 'plano', 'exames', 'produtos', 'academia', 'salao', 'outros_saude_e_beleza'],
+    'educacao': ['mensalidade', 'material_escolar', 'cursos', 'outros_educacao'],
+    'extras': ['viagens', 'roupas', 'cinema', 'shows', 'festas', 'presentes', 'animais', 'outros_extras'],
     'comparacao': []
 }
 
