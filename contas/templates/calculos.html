@@ -1,26 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<head>
-    {% blcok head %}
+{% block head %}
     <title>Controle de Despesas</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="">
     <link rel="preconnect" href="" crossorigin>
     <link href="" rel="stylesheet">
 {% endblock %}
-</head>
-<body>
-
-    <main>
-        {% block main %}
+{% block main %}
+<main>
+    <form method="POST">
+    {% csrf_token %}
     <div class="container">
         <div class="section">
             <h2 class="section-title">SALÁRIO </h2>
             <div class="card">
                 <h3>CARTEIRA WALLET</h3>
+                <div class="form-inputs">
+                    <label>Salário:</label>
+                    <input type="number" name="salario" placeholder="R$ 0,00" value="{{ salario|default_if_none:'' }}">
+                    <label>Extra:</label>
+                    <input type="number" name="extra" placeholder="R$ 0,00" value="{{ extra|default_if_none:'' }}">
                 </div>
-        </div>
+                <div class="total-cost">
+                    SALÁRIO TOTAL: R$ {{ salario_total|floatformat:2|default:'0,00' }}
+                </div>
+                <div class="total-cost">
+                    <button type="submit" class="calculate-btn">Calcular</button>
+                </div>
+    </div>
 
         <div class="section">
             <h2 class="section-title">CASA </h2>
@@ -28,21 +37,21 @@
                 <div class="content-wrapper">
                     <div class="form-inputs">
                         <label>Aluguel:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="aluguel" placeholder="R$ 0,00" value="{{ aluguel|default_if_none:'' }}">
                         <label>Água:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="agua" placeholder="R$ 0,00" value="{{ agua|default_if_none:'' }}">
                         <label>Luz:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="luz" placeholder="R$ 0,00" value="{{ luz|default_if_none:'' }}">
                         <label>Gás:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="gas" placeholder="R$ 0,00" value="{{ gas|default_if_none:'' }}">
                         <label>Internet:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="internet" placeholder="R$ 0,00" value="{{ internet|default_if_none:'' }}">
                         <label>Telefone:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="telefone" placeholder="R$ 0,00" value="{{ telefone|default_if_none:'' }}">
                         <label>Serviços e Prestações:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="servicos_prestacoes" placeholder="R$ 0,00" value="{{ servicos_prestacoes|default_if_none:'' }}">
                         <label>Outros:</label>
-                        <input type="number" placeholder="R$ 0,00">
+                        <input type="number" name="outros_casa" placeholder="R$ 0,00" value="{{ outros_casa|default_if_none:'' }}">
                     </div>
                     <div class="stats">
                         <h3>ESTATÍSTICAS</h3>
@@ -56,7 +65,10 @@
                     </div>
                 </div>
                 <div class="total-cost">
-                    GASTO TOTAL: R$ 0,00
+                    GASTO TOTAL: R$ {{ total_saude|floatformat:2|default:'0,00' }}
+                </div>
+                <div class="total-cost">
+                    <button type="submit" class="calculate-btn">Calcular</button>
                 </div>
             </div>
         </div>
@@ -201,8 +213,5 @@
             </div>
         </div>
     </div>
-    {% endblock %}
-    </main>
-
-</body>
-</html>
+</main>
+{% endblock %}

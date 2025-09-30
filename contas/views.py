@@ -7,6 +7,16 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 
+CATEGORIAS_CALCULO = {
+    'casa': ['aluguel', 'agua', 'luz', 'gas', 'internet', 'telefone', 'servicos_prestacoes', 'outros'],
+    'alimentacao': ['mercado', 'fora', 'hort_frut', 'feira', 'outros'],
+    'transporte': ['publico', 'gasolina', 'manutencao', 'seguro', 'taxi'],
+    'saude_e_beleza': ['farmacia', 'plano', 'exames', 'produtos', 'academia', 'salao', 'outros'],
+    'educacao': ['mensalidade', 'material_escolar', 'cursos', 'outros'],
+    'extras': ['viagens', 'roupas', 'cinema', 'shows', 'festas', 'presentes', 'animais', 'outros'],
+    'comparacao': []
+}
+
 @login_required
 def criar_conta(request):
     if request.method == 'POST':
@@ -58,14 +68,34 @@ def excluir_conta(request, conta_id):
 
 @login_required
 def calculos(request):
+    context = {}
     if request.method == 'POST':
         salario = float(request.POST.get('salario', 0))
         extra = float(request.POST.get('extra', 0))
         salario_total = salario + extra
-
-    total_contas = 0
-    for i in Categoria:
-        pass
+        context.update({
+            'salario': salario,
+            'extra': extra,
+            'salario_total': salario_total,
+        })
+        
+        total_despesas = 0
+        
+        # Itera sobre o dicionário padronizado para calcular os totais
+        for categoria_nome, fields in CATEGORIAS_CALCULO.items():
+            total_categoria = 0
+            for field in fields:
+                value = float(request.POST.get(field, 0) or 0)
+                context[field] = value
+                total_categoria += value
+            
+            # Adiciona o total da categoria ao contexto (ex: context['total_casa'] = 500)
+            context[f'total_{categoria_nome}'] = total_categoria
+            total_despesas += total_categoria
+        resultado = salario_total - total_despesas
+        context['total_despesas'] = total_despesas
+        context['resultado'] = resultado
+    return render(request, 'calculos.html', context)
 
 @login_required
 def historico(request):
@@ -96,14 +126,14 @@ def criar_categorias(request):
 
 def servicos(request):
     servicos = Servico.objects.create()
-    servicos_por_categoria = {
-        "Casa": ["Aluguel", "Agua", "Luz", "Gas", "TV acabo", "Internet", "Telefone", "Servicos/Produtos", "Outros"],
-        "Alimentação": ["Mercado", "Fora", "Hort frut", "Feira", "Outros"],
-        "Transporte": ["Publico", "Gasolina", "Manutencao", "Seguro", "Táxi"],
-        "Saúde e Beleza": ["Farmácia", "Plano", "Exames", "Produtos", "Academia", "Salao", "Outros"],
-        "Educação": ["Mensalidade", "Material Escolar", "Cursos", "Outros"],
-        "Extras": ["Viagens", "Roupas", "Cinema", "Shows", "Festas", "Presentes", "Animais", "Outros"],
-        "Comparação": []
+    servicos_categoria = {
+      "Casa": ["Aluguel", "Agua", "Luz", "Gas", "TV acabo", "Internet", "Telefone", "Servicos/Produtos", "Outros"],
+      "Alimentação": ["Mercado", "Fora", "Hort frut", "Feira", "Outros"], 
+      "Transporte": ["Publico", "Gasolina", "Manutencao", "Seguro", "Táxi"], 
+      "Saúde e Beleza": ["Farmácia", "Plano", "Exames", "Produtos", "Academia", "Salao", "Outros"],
+      "Educação": ["Mensalidade", "Material Escolar", "Cursos", "Outros"],
+      "Extras": ["Viagens", "Roupas", "Cinema", "Shows", "Festas", "Presentes", "Animais", "Outros"], 
+      "Comparação": [] 
     }
 
     return render(request, '', {'servicos': servicos})

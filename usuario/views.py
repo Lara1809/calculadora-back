@@ -27,17 +27,18 @@ def cadastrar(request):
             auth_login(request, user)
             
             messages.success(request, f'Usuário {username} cadastrado com sucesso!')
-            return redirect('boas_vindas.html')
+            return redirect('boas_vindas')
     else:
         form = CadastrarForm()
 
     return render(request, 'cadastrar.html', {'form': form})
 
-@csrf_exempt  #  REMOVER DA PRODUCAO
 def login(request):
+    print("!!!!!!!! A FUNÇÃO LOGIN FOI CHAMADA !!!!!!!!") # <--- ADICIONE ESTA LINHA
     form = LoginForm(request.POST or None)
 
     if request.method == 'POST':
+        print("!!!!!!!! O MÉTODO É POST !!!!!!!!") # <--- E ESTA
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -51,7 +52,7 @@ def login(request):
             else:
                 messages.error(request, 'Nome ou senha inválidos.')
 
-    return render(request, 'login.html')
+    return render(request, 'login.html', {'form': form})
 
 @login_required
 def boas_vindas(request):
