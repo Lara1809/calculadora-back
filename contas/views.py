@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
 CATEGORIAS_CALCULO = {
-    'casa': ['aluguel', 'agua', 'luz', 'gas', 'internet', 'telefone', 'servicos_prestacoes', 'outros'],
+    'casa': ['aluguel', 'agua', 'luz', 'gas', 'internet', 'telefone', 'servicos_prestacoes', 'outros_casa'],
     'alimentacao': ['mercado', 'fora', 'hort_frut', 'feira', 'outros'],
     'transporte': ['publico', 'gasolina', 'manutencao', 'seguro', 'taxi'],
     'saude_e_beleza': ['farmacia', 'plano', 'exames', 'produtos', 'academia', 'salao', 'outros'],
@@ -70,8 +70,11 @@ def excluir_conta(request, conta_id):
 def calculos(request):
     context = {}
     if request.method == 'POST':
-        salario = float(request.POST.get('salario', 0))
-        extra = float(request.POST.get('extra', 0))
+        def get_float(field_name):
+            return float(request.POST.get(field_name) or 0)
+        # Salario
+        salario = get_float('salario')
+        extra = get_float('extra')
         salario_total = salario + extra
         context.update({
             'salario': salario,
@@ -85,7 +88,7 @@ def calculos(request):
         for categoria_nome, fields in CATEGORIAS_CALCULO.items():
             total_categoria = 0
             for field in fields:
-                value = float(request.POST.get(field, 0) or 0)
+                value = get_float(field)
                 context[field] = value
                 total_categoria += value
             
