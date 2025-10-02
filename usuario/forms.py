@@ -34,6 +34,12 @@ class CadastrarForm(forms.Form):
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
 
+    picture = forms.ImageField(
+        label="Foto de Perfil",
+        required=False,
+        widget=forms.FileInput(attrs={'class': 'form-control'})
+    )
+
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")

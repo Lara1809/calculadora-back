@@ -21,9 +21,11 @@ def cadastrar(request):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
+            picture = form.cleaned_data.get('picture')
+
 
             user = User.objects.create_user(username=username, email=email, password=password)
-            Usuario.objects.create(user=user)  
+            Usuario.objects.create(user=user, picture=picture)  
             auth_login(request, user)
             
             messages.success(request, f'Usuário {username} cadastrado com sucesso!')
