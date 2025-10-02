@@ -4,8 +4,8 @@ from .models import Usuario
 
 class LoginForm(forms.Form):
 
-    login = forms.CharField(
-        label="Nome de Usuário ou E-mail",
+    username = forms.CharField(
+        label="Nome de Usuário",
         max_length=150,
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )

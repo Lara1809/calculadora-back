@@ -7,8 +7,8 @@
 {% endblock %}
 
     <main class="profile-container">
-        {% blcok main %}
-        <a href="#" class="back-button">←</a>
+        {% block main %}
+        <a href="{% url 'boas_vindas' %}" class="back-button">←</a>
         <h1 class="profile-title">SEU PERFIL</h1>
 
         <section class="profile-photo-section">
@@ -30,7 +30,7 @@
             <div class="info-field">
                 <label for="name">Nome:</label>
                 <div class="input-and-button">
-                    <input type="text" id="name" name="name" value="Nome do Usuário" disabled>
+                    <input type="text" id="name" name="name" value="{{ usuario.user.username }}" disabled>
                     <button class="edit-button">Editar</button>
                 </div>
             </div>
@@ -38,7 +38,7 @@
             <div class="info-field">
                 <label for="email">Email:</label>
                 <div class="input-and-button">
-                    <input type="email" id="email" name="email" value="email@exemplo.com" disabled>
+                    <input type="email" id="email" name="email" value="{{ usuario.user.email }}" disabled>
                     <button class="edit-button">Editar</button>
                 </div>
             </div>
@@ -51,6 +51,9 @@
                 </div>
             </div>
         </section>
+        <div class="info-field">
+            <a href="{% url 'logout' %}" class="action-button">Sair</a>
+       </div>
         {% endblock %}
     </main>
 

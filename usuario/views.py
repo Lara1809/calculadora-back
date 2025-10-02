@@ -34,11 +34,9 @@ def cadastrar(request):
     return render(request, 'cadastrar.html', {'form': form})
 
 def login(request):
-    print("!!!!!!!! A FUNÇÃO LOGIN FOI CHAMADA !!!!!!!!") # <--- ADICIONE ESTA LINHA
     form = LoginForm(request.POST or None)
 
     if request.method == 'POST':
-        print("!!!!!!!! O MÉTODO É POST !!!!!!!!") # <--- E ESTA
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -61,7 +59,7 @@ def boas_vindas(request):
 @login_required
 def exibir_perfil(request, id=None):
     # Busca o perfil do usuário
-    usuario = get_object_or_404(Usuario, user=request.user)
+    usuario, created = Usuario.objects.get_or_create(user=request.user)
     return render(request, 'exibir_perfil.html', {'usuario': usuario})
 
 @login_required
