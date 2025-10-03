@@ -106,7 +106,7 @@ def historico(request):
 
 @login_required
 def comparacao(request):
-    return render(request, '')
+    return render(request, 'comparacao.html')
 
 def criar_categorias(request):
     categorias = (
