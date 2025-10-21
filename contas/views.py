@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Conta, Empresa, Servico, Categoria
+from .models import Conta, Empresa, Servico, Categoria, Calculo
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -58,13 +58,9 @@ def exibir_conta(request):
 def excluir_conta(request, conta_id):
     conta = get_object_or_404(Conta, id=conta_id, usuario=request.user)
     if request.method == 'POST':
-        conta.delete()          # Apaga a conta do banco.
+        conta.delete()
         messages.success(request, "Conta excluída com sucesso!")
-        return redirect('')
-
-    if request.method == 'POST':
-        conta.delete()          # apaga a conta do banco
-        return redirect('') 
+    return redirect('historico')
 
 @login_required
 def calculos(request):
@@ -98,14 +94,49 @@ def calculos(request):
         resultado = salario_total - total_despesas
         context['total_despesas'] = total_despesas
         context['resultado'] = resultado
+
+        novo_calculo = Calculo(
+            usuario=request.user,
+            salario_total=salario_total,
+            total_despesas=total_despesas,
+            resultado_final=resultado,
+            dados_calculo=context  # Salva o dicionário completo
+        )
+        novo_calculo.save()
+
     return render(request, 'calculos.html', context)
 
 @login_required
 def historico(request):
-    return render(request, '')
+    calculos_salvos = Calculo.objects.filter(usuario=request.user).order_by('-data_criacao')
+    context = {
+        'calculos': calculos_salvos
+    }
+    return render(request, 'historico.html', context)
+
+@login_required
+def excluir_calculos(request):
+    if request.method == 'POST':
+        Calculo.objects.filter(usuario=request.user).delete()
+        messages.success(request, "Histórico de cálculos excluído com sucesso!")
+        return redirect('historico')
+    
+    return redirect('historico')
 
 @login_required
 def comparacao(request):
+    if request.method == 'POST':
+        ano = request.POST.get('ano')
+        mes = request.POST.get('mes')
+        
+        calculos = Calculo.objects.filter(
+            usuario=request.user,
+            data_criacao__year=ano,
+            data_criacao__month=mes
+        )
+        
+        return render(request, 'comparacao.html', {'calculos': calculos})
+            
     return render(request, 'comparacao.html')
 
 def criar_categorias(request):

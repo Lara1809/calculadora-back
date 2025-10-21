@@ -1,9 +1,15 @@
-.home-container-1 {
-    width: 100%;
-    max-width: 450px; /* Largura similar a de um celular */
-    text-align: center;
-    padding: 15px;
+* {
+    padding: 0;
+    margin: 0;
 }
+
+.home-container {
+    width: 100%;
+    max-width: 900px; /* Largura similar a de um celular */
+    text-align: center;
+    padding: 0px;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -19,10 +25,9 @@
 
 .logo-banner {
     background-color: #ffffff;
-    border: 2px solid #053F3D;
+    border: 3px solid #053F3D;
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 30px;
 }
 
 .options-title {
@@ -85,15 +90,18 @@
     color: #053F3D;
     font-style: italic;
 }
+
 /* HOME QUERIDA */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+    background: linear-gradient(140deg, #053f3d,#a3b88d,#d2e19d,#053f3d);
+    color: #2C3E50;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .button-primary-1, .button-secondary-1 {
@@ -110,28 +118,32 @@ body {
 }
 
 .button-primary-1 {
-    background: #ffffff;
-    color: #053F3D;
-    border: 1px solid #053F3D;
-    order: 1;
+    background: #053F3D;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    order: 3;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-style: outset;
 }
 
 .button-secondary-1 {
-    background: #ffffff;
-    color: #053F3D;
-    border: 1px solid #053F3D;
+    background: #053F3D;
+    color: #ffffff;
+    border: 3px solid #ffffff;
     order: 3;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-style: outset;
 }
 
 /* Estilos para o cabeçalho (header) */
 .header {
-    width: 91%;
+    width: 95.4%;
     max-width: 100; /* Limite a largura para simular a imagem */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #fff;
+    background-color: #053F3D;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -142,7 +154,7 @@ body {
     text-align: center;
 }
 
-.header-nav .nav-button {
+.header-nav-1 .nav-button-1 {
     padding: 10px 15px;
     margin-left: 10px;
     border: 1px solid #ffffff;
@@ -154,7 +166,28 @@ body {
 }
 
 /* Estilos para o conteúdo principal */
+
 .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-content-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-content-row {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     max-width: 600px;
     padding: 20px;
@@ -168,19 +201,23 @@ body {
 
 .content-box-1, .content-box-2 {
     background-color: #053F3D;
-    border: 1px solid #ffffff;
+    border: 2px solid #ffffff;
     border-radius: 20px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.easy-life-box {
-    height: 150px ;
-    width: 389px;
+.easy-life-box-home {
+    background-color: #ffffff;
+    border: 4px solid #053F3D;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
+
 
 .easy-life-text {
     display: flex;
@@ -192,8 +229,9 @@ body {
 .ribbon-2 {
     background-color: #053F3D;
     color: #ffffff;
-    padding: 5px 15px;
-    font-size: 1.8rem;
+    padding: 5px 30px;
+    font-size: 2.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     position: relative;
     clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%, 10% 50%);
@@ -202,10 +240,11 @@ body {
 .subtitle-2 {
     font-size: 1rem;
     color: #053F3D;
-    margin-top: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5px;
 }
 
-.piggy-image-1 {
+.piggy-image-home {
     width: 150px;
     height: auto;
 }
@@ -222,21 +261,12 @@ body {
 .placeholder-text {
     font-size: 1.5rem;
     font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* HISTORICO FIA */
-body {
-    font-family: Arial, sans-serif;
-    background: #e0f2f1; /* Cor de fundo para simular a imagem */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* --- */
 /* Estilos do cabeçalho da página (Histórico) */
@@ -377,16 +407,6 @@ body {
 }
 
 /* COMPARAR FOFAH */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #e0f2f1;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* --- */
 /* Estilos do cabeçalho da página (Comparar) */
@@ -556,16 +576,6 @@ body {
 }
 
 /* CALCULOS BIXA */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #e0f2f1;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* --- */
 /* Estilos do cabeçalho */
@@ -719,42 +729,68 @@ body {
 
 /* Responsividade(CALCULOS BIXA) */
 /* Usando uma fonte pixelada para se assemelhar ao design */
-body {
-    background-color: #1e1e2f; /* Fundo escuro azulado/acinzentado */
-    color: #2c3e50; /* Cor de texto padrão */
-    font-family: 'VT323', monospace; /* Fonte pixelada */
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
 
 .container {
     width: 100%;
     max-width: 450px; /* Largura máxima para simular a tela de um celular */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espaçamento entre as seções */
+    display: inline-block;
 }
 
 .section-title {
-    background-color: #3b8c83; /* Fundo verde-azulado para os títulos */
+    width: 60%;
+    background-color: #053F3D; /* Fundo verde-azulado para os títulos */
     color: #eaf2e3; /* Cor do texto do título */
     padding: 8px;
-    border: 2px solid #2c3e50;
-    border-radius: 8px;
-    text-align: center;
-    font-family: 'Press Start 2P', cursive; /* Fonte mais "gamer" para títulos */
-    font-size: 16px;
-    margin-bottom: 5px;
+    border: 4px solid #ffffff;
+    border-radius: 15px;
+    border-style: outset;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Fonte mais "gamer" para títulos */
+    font-size: xx-large;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.section-title-carteira {
+    width: 60%;
+    background-color: #053F3D; /* Fundo verde-azulado para os títulos */
+    color: #eaf2e3; /* Cor do texto do título */
+    padding: 8px;
+    border: 4px solid #ffffff;
+    border-radius: 15px;
+    border-style: outset;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Fonte mais "gamer" para títulos */
+    font-size: xx-large;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.title-carteira {
+    color: #053F3D;
+    font-weight: bold;
 }
 
 .card {
-    background-color: #d8e4c2; /* Fundo verde-claro/bege para os cards */
-    border: 3px solid #2c3e50; /* Borda escura */
+    width: 457px;
+    background-color: #ffffff; /* Fundo verde-claro/bege para os cards */
+    border: 3px solid #053F3D; /* Borda escura */
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 5px 5px 0px #000000; /* Sombra para dar profundidade */
+    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
+    margin-bottom: 60px;
+}
+
+.card-carteira {
+    width: 99%;
+    background-color: #ffffff; /* Fundo verde-claro/bege para os cards */
+    border: 3px solid #053F3D; /* Borda escura */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
+    margin-bottom: 60px;
 }
 
 .content-wrapper {
@@ -772,11 +808,18 @@ body {
 .form-inputs label {
     margin-top: 10px;
     font-weight: bold;
+    color: #053F3D;
+}
+
+.infos-carteiras {
+    color: #053F3D;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .form-inputs input {
-    background-color: #f0f6e8;
-    border: 2px solid #2c3e50;
+    background-color: #ffffff;
+    border: 3px solid #053F3D;
     border-radius: 5px;
     padding: 8px;
     font-family: 'VT323', monospace;
@@ -818,15 +861,16 @@ body {
 }
 
 .total-cost {
-    background-color: #4a5d6a;
+    background-color: #053F3D;
     color: #ffffff;
-    border: 2px solid #2c3e50;
+    border: 3px solid #ffffff;
     border-radius: 8px;
     padding: 10px;
     text-align: center;
     font-weight: bold;
     margin-top: 15px;
     font-size: 20px;
+    border-style: outset;
 }
 
 /* Estilo específico para o card de "CARTEIRA" */
@@ -834,76 +878,83 @@ body {
     text-align: center;
     margin: 0;
     padding: 10px;
+    color: #053F3D;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
 /* CADASTRAR HEIN PROSTITUTA VEM AQUI */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #86a2c7; /* Cor de fundo escura */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* Container principal com duas colunas */
 .auth-container {
-    width: 90%;
-    max-width: 800px;
     display: flex;
+    flex-direction: row;
     border-radius: 15px;
     overflow: hidden; /* Garante que as bordas arredondadas sejam aplicadas */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    align-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+
 }
 
 /* --- */
 /* Coluna de Login (Esquerda) */
 .login-column {
     flex: 1;
-    background: #94a6ca; /* Cor escura do lado esquerdo */
+    background: #053F3D; /* Cor escura do lado esquerdo */
     color: #fff;
     padding: 40px 20px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
+    justify-content: space-around;
     align-items: center;
-    text-align: center;
+    align-content: space-around;
+    flex-wrap: wrap;
 }
 
 .login-content {
     max-width: 250px;
 }
 
-.piggy-image {
+.piggy-image-cadastrar {
     width: 200px;
-    margin-bottom: 20px;
-}
+} 
 
-.login-title {
+.login-title-cadastrar {
     font-size: 1.8rem;
     font-weight: bold;
-    margin: 0 0 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    padding: 8px 30px;
 }
 
 .login-text {
     font-size: 0.9rem;
     margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.foto-de-perfil {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #053F3D;
 }
 
 .button-primary-3 {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
+    width: 80%;
+    padding: 10px;
+    font-size: 2rem;
     font-weight: bold;
-    color: #fff;
-    background-color: #053F3D;
-    border: none;
-    border-radius: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #053F3D;
+    background-color: #ffffff;
+    border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-style: outset;
+    box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.5);
+    border-color: #ffffff;
 }
 
 /* --- */
@@ -911,12 +962,16 @@ body {
 .register-column {
     flex: 1;
     background-color: #ffffff; /* Cor de fundo clara do lado direito */
+    border: 2px solid #ffffff;
+    border-radius: 10px;
     padding: 40px 20px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
+    align-content: space-around;
+    flex-wrap: wrap;
 }
 
 .register-content {
@@ -925,18 +980,20 @@ body {
 
 .register-title {
     font-size: 1.5rem;
-    color: #175339;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    color: #053F3D;
     margin: 0 0 5px;
 }
 
 .register-subtitle {
-    font-size: 0.8rem;
-    color: #ace6ba;
+    font-size: 0.9rem;
+    color: #a6a6a6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-bottom: 30px;
 }
 
 .register-form {
-    width: 100%;
+    width: 110%;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -945,24 +1002,26 @@ body {
 .form-input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 2px solid #053F3D;
     border-radius: 20px;
     box-sizing: border-box;
     font-size: 0.9rem;
-    text-indent: 10px; /* Adiciona um recuo para o texto */
+    text-indent: 5px; /* Adiciona um recuo para o texto */
 }
 
 .button-secondary-3 {
     width: 100%;
-    padding: 12px;
-    font-size: 1rem;
+    padding: 10px;
+    font-size: 2rem;
     font-weight: bold;
-    color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ffffff;
     background: #053F3D;
-    border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 4px 4px rgba(193, 193, 193, 0.71);
+    border-style: outset;
+    border-color: #ffffff;
 }
 
 /* Responsividade(HEIN PROSTITUTA VEM AQUI) */
@@ -977,23 +1036,16 @@ body {
 }
 
 /* LOGIN OH DENISE SAI DA LIVE FILHA */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #053F3D;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* Container principal e seus elementos */
-.login-container-2 {
+.login-container {
     width: 90%;
     max-width: 500px;
     text-align: center;
     padding: 20px;
+    display: inline-block;
+    align-items: center;
+    align-content: center;
 }
 
 .welcome-title {
@@ -1002,7 +1054,9 @@ body {
     color: #053F3D;
     background: #ffffff;
     padding: 10px 30px;
+    margin: 20px;
     border: 5px solid #053F3D;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 30px;
     position: relative;
     z-index: 4;
@@ -1013,13 +1067,14 @@ body {
 .login-box {
     background-color: #fff;
     border: 3px solid #053F3D;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: -10px; /* Sobrepõe levemente o título */
 }
 
 .login-title {
+    width: 30%;
     font-size: 1.5rem;
     font-weight: bold;
     color: #fff;
@@ -1079,6 +1134,7 @@ body {
     color: #053F3D;
     order: 2;
     margin: 10px auto;
+    font-weight: bolder;
 }
 
 .button-primary-2, .button-secondary-2 {
@@ -1095,32 +1151,24 @@ body {
 }
 
 .button-primary-2 {
-    background: #ffffff;
-    color: #053F3D;
-    border: 1px solid #053F3D;
+    background: #053F3D;
+    color: #ffffff;
+    border: 3px solid #ffffff;
     order: 1;
+    border-style: outset;
 }
 
 .button-secondary-2 {
-    background: #ffffff;
-    color: #053F3D;
-    border: 1px solid #053F3D;
+    background: #053F3D;
+    color: #ffffff;
+    border: 3px solid #ffffff;
     order: 3;
+    border-style: outset;
 }
 
 /* LOGIN OH DENISE SAI DA LIVE FILHA FIM */
 
 /* PERFIL FULANO DE TOWN */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #e0f2f1; /* Cor de fundo para simular a imagem */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* Container principal */
 .profile-container {
@@ -1146,25 +1194,26 @@ body {
 
 .profile-title {
     font-size: 1.5rem;
-    color: #fff;
-    background: linear-gradient(to right, #6a82fb, #4a90e2);
+    color: #ffffff;
+    background: linear-gradient(to right, #053F3D, #a3b88d);
     padding: 10px 20px;
+    border: 2px solid #ffffff;
     border-radius: 20px;
     display: inline-block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
 }
 
 /* Seção de foto de perfil */
 .profile-photo-section {
     padding: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 3px solid #ffffff;
     margin-bottom: 20px;
 }
 
 .section-subtitle {
-    font-size: 1rem;
-    color: #a9ccaa;
+    font-size: 2rem;
+    color: #ffffff;
     margin-bottom: 15px;
 }
 
@@ -1178,7 +1227,7 @@ body {
 .photo-placeholder {
     width: 100px;
     height: 100px;
-    border: 1px solid #ccc;
+    border: 2px solid #ffffff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1193,12 +1242,28 @@ body {
 }
 
 .photo-buttons {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.action-button {
+.action-button-foto-AL {
+    background: #053F3D;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.action-button-foto-RE {
+    background: #053F3D;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.action-button-perfil {
     padding: 10px 15px;
     font-size: 0.9rem;
     color: #333;
@@ -1221,9 +1286,10 @@ body {
 .info-field label {
     display: block;
     font-size: 0.9rem;
-    color: #888;
+    color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .input-and-button {
@@ -1234,18 +1300,18 @@ body {
 .input-and-button input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 3px solid #053F3D;
     border-radius: 20px;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #ffffff;
+    color: #2c2c2c;
 }
 
 .edit-button {
     padding: 8px 15px;
-    font-size: 0.8rem;
-    color: #4a90e2;
-    background-color: #fff;
-    border: 1px solid #4a90e2;
+    font-size: 0.9rem;
+    color: #ffffff;
+    background-color: #053F3D;
+    border: 3px solid #ffffff;
     border-radius: 20px;
     cursor: pointer;
     margin-left: 10px;
@@ -1265,16 +1331,6 @@ body {
 }
 
 /* BOAS VINDAS TICA (reutiliza o fundo dos cálculos)  */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #e0f2f1;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* --- */
 /* Estilos do Cabeçalho */
@@ -1306,6 +1362,7 @@ body {
     max-width: 600px;
     padding: 20px;
     box-sizing: border-box;
+    display: inline-block;
 }
 
 /* Bloco do Logo/Título Central */
@@ -1315,14 +1372,15 @@ body {
 }
 
 .easy-life-box {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #ffffff;
+    border: 4px solid #053F3D;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .easy-life-text {
@@ -1333,9 +1391,9 @@ body {
 }
 
 .ribbon {
-    background-color: #555;
+    background-color: #053F3D;
     color: #fff;
-    padding: 5px 15px;
+    padding: 5px 25px;
     font-size: 1.8rem;
     font-weight: bold;
     position: relative;
@@ -1343,43 +1401,83 @@ body {
 }
 
 .subtitle {
-    font-size: 1rem;
-    color: #666;
-    margin-top: 10px;
+    font-size: large;
+    color: #053F3D;
+    margin-top: 5px;
 }
 
-.piggy-image {
-    width: 100px;
+.piggy-image-boas {
+    width: 135px;
     height: auto;
+}
+
+.icon-profile {
+    background: #ffffff;
+    border: 3px solid #053F3D;
+    border-radius: 30px;
+    padding: 20px;
+    text-decoration: none;
+    color: #053F3D;
+    font-weight: bold;
 }
 
 /* Botão de Opções */
 .options-menu {
     text-align: center;
+    margin-top: 40px;
     margin-bottom: 20px;
 }
 
+.no-category-button {
+    background-color: #053F3D;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    padding: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    display: inline-flex;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+}
+
+.no-account-text-boas {
+    color: #053F3D;
+    padding: 10px;
+}
+
+.action-button-boas {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #053F3D;
+    background-color: #ffffff;
+    border: 2px solid #053F3D;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .options-button {
-    padding: 12px 30px;
+    padding: 10px 35px;
     font-size: 1.2rem;
     font-weight: bold;
     color: #fff;
-    background: #4a90e2;
-    border: none;
+    background: #053F3D;
+    border: 3px solid #ffffff;
     border-radius: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
 }
 
 .options-button .icon {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 /* Grade de Botões de Categorias */
 .category-buttons-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas */
-    gap: 15px;
+    gap: 10px;
 }
 
 .category-button {
@@ -1388,23 +1486,89 @@ body {
     font-size: 1rem;
     font-weight: bold;
     color: #fff;
-    background: #6a82fb; /* Cor de fundo padrão dos botões */
+    background: #053F3D; /* Cor de fundo padrão dos botões */
+    border: 3px solid #ffffff;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Botão de Transporte (largura total) */
-.full-width-button {
-    grid-column: 1 / -1; /* Ocupa as duas colunas */
-    background: #4a90e2;
-    margin-top: 5px;
-}
+.category-button-casa { 
+    background: #053F3D;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+} /* Casa */
 
-/* Ajustes de cores para simular os ícones ou ênfase */
-.category-button:nth-child(1) { background: #5d92d4; } /* Casa */
-.category-button:nth-child(3) { background: #f29f05; } /* Alimentação */
-.category-button:nth-child(5) { background: #c94c4c; } /* Saúde & Beleza */
+.category-button-educacao { 
+    background: #053F3D;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+} /* Educação */
+
+.category-button-alimentacao { 
+    background: #053F3D; 
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+} /* Alimentação*/
+
+.category-button-extras { 
+    background: #053F3D;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+} /* Extras */
+
+.category-button-saude-beleza { 
+    background: #053F3D;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+} /* Sáude e Beleza */
+
+.category-button-comparar { 
+    background: #053F3D;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+} /* Comparar */
+
+.category-button-transporte { 
+    background: #053F3D; 
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border-style: outset;
+} /* Transporte */
 
 /* Responsividade ( BOAS VINDAS TICA) */
 @media (max-width: 400px) {

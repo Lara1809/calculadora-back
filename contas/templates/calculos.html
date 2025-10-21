@@ -9,6 +9,7 @@
 {% block main %}
 <main>
     <a href="{% url 'boas_vindas' %}" class="back-button">←</a>
+
     <form method="POST" action="{% url 'calculos' %}">
     {% csrf_token %}
     <div class="container">
@@ -82,6 +83,7 @@
                         <input type="number" step="0.01" name="feira" placeholder="R$ 0,00" value="{{ feira|default_if_none:'' }}">
                         <label>Outros:</label>
                         <input type="number" step="0.01" name="outros_alimentacao" placeholder="R$ 0,00" value="{{ outros_alimentacao|default_if_none:'' }}">
+                    </div>
                     <div class="stats">
                         <h3>ESTATÍSTICAS</h3>
                         <div class="chart-placeholder"></div>
@@ -243,7 +245,10 @@
                 <div class="total-cost" style="margin-top: 20px;">TOTAL DE DESPESAS: R$ {{ total_despesas|floatformat:2|default:'0,00' }}</div>
                 <div class="total-cost">SALARIO RESTANTE: R$ {{ resultado|floatformat:2|default:'0,00' }}</div>
             </div>
-        </div>
+        </div> 
+        <button style="width: 50%; font-size: 1.3em; padding: 10px; margin-top: 15px;">
+            <a href="{% url 'historico' %}" class="button">Historico</a>
+        </button>
     </div>
     </form>
 </main>

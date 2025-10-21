@@ -41,3 +41,14 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Calculo(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="calculos")
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    
+    salario_total = models.DecimalField(max_digits=10, decimal_places=2)
+    total_despesas = models.DecimalField(max_digits=10, decimal_places=2)
+    resultado_final = models.DecimalField(max_digits=10, decimal_places=2)
+    dados_calculo = models.JSONField()
+    def __str__(self):
+        return f"Cálculo de {self.usuario.username} em {self.data_criacao.strftime('%d/%m/%Y')}"
