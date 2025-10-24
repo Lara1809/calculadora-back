@@ -24,10 +24,9 @@
 }
 
 .logo-banner {
-    background-color: #ffffff;
-    border: 3px solid #053F3D;
-    border-radius: 10px;
     padding: 20px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .options-title {
@@ -47,7 +46,7 @@
 }
 
 .button-link {
-    background-color: #e9ecef;
+    background-color: #0080ff;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px 10px;
@@ -105,34 +104,32 @@ body {
 }
 
 .button-primary-1, .button-secondary-1 {
-    padding: 12px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    text-decoration: none;
-    text-align: center;
     display: inline-block;
+    padding: 12px 20px;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+    border-style: outset;
 }
 
 .button-primary-1 {
     background: #053F3D;
     color: #ffffff;
     border: 3px solid #ffffff;
-    order: 3;
+    border-radius: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-style: outset;
+    font-size: larger;
 }
 
 .button-secondary-1 {
     background: #053F3D;
     color: #ffffff;
     border: 3px solid #ffffff;
-    order: 3;
+    border-radius: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-style: outset;
+    font-size: larger;
 }
 
 /* Estilos para o cabeçalho (header) */
@@ -148,13 +145,17 @@ body {
 }
 
 .header-title {
-    font-size: 2.5rem;
-    color: #053F3D;
+    font-size: xxx-large;
+    color: #ffffff;
     align-items: center;
     text-align: center;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
 }
 
-.header-nav-1 .nav-button-1 {
+.header-nav .nav-button {
     padding: 10px 15px;
     margin-left: 10px;
     border: 1px solid #ffffff;
@@ -180,9 +181,11 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 600px;
-    padding: 20px;
+    max-width: 800px;
+    padding: 20px 20px;
     box-sizing: border-box;
+    border-top: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
 }
 
 .main-content-row {
@@ -197,25 +200,21 @@ body {
 .top-section, .bottom-section {
     width: 100%;
     margin-bottom: 20px;
-}
-
-.content-box-1, .content-box-2 {
-    background-color: #053F3D;
-    border: 2px solid #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 .easy-life-box-home {
     background-color: #ffffff;
-    border: 4px solid #053F3D;
-    border-radius: 10px;
+    border-bottom: 15px solid #053F3D;
+    border-top: 15px solid #053F3D;
+    border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border-right-width: thin;
+    border-left-width: thin;
 }
 
 
@@ -228,34 +227,51 @@ body {
 
 .ribbon-2 {
     background-color: #053F3D;
-    color: #ffffff;
-    padding: 5px 30px;
-    font-size: 2.5rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 15px 80px;
+    font-size: xxx-large;
     font-weight: bold;
     position: relative;
-    clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%, 10% 50%);
+    clip-path: polygon(0% 0%, 100% 0%, 95% 50%, 100% 100%, 0% 100%, 5% 50%);
+    animation: piscaNeon 1.5s infinite;
+}
+
+@keyframes piscaNeon {
+  0%, 100% {
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
+    color: #fff;
+  }
+  50% {
+    text-shadow: none;
+    color: #ffffff;
+  }
 }
 
 .subtitle-2 {
-    font-size: 1rem;
+    font-size: larger;
     color: #053F3D;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 5px;
 }
 
 .piggy-image-home {
-    width: 150px;
+    width: 220px;
     height: auto;
 }
 
 /* Estilos para a caixa de texto inferior */
-.content-box-2 {
-    background:(to right, #053f3d ); /* Exemplo de gradiente */
+.content-box-1 {
+    background: #053F3D; /* Exemplo de gradiente */
+    border: 4px solid #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 170px;
+    height: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 20px;
 }
 
 .placeholder-text {
@@ -413,7 +429,7 @@ body {
 .header-compare {
     width: 100%;
     max-width: 600px;
-    display: flex;
+    display: inline-block;
     justify-content: flex-start;
     align-items: center;
     padding: 20px;
@@ -740,6 +756,10 @@ body {
     width: 60%;
     background-color: #053F3D; /* Fundo verde-azulado para os títulos */
     color: #eaf2e3; /* Cor do texto do título */
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
     padding: 8px;
     border: 4px solid #ffffff;
     border-radius: 15px;
@@ -748,25 +768,11 @@ body {
     font-size: xx-large;
     margin-bottom: 20px;
     margin-top: 20px;
-    display: inline-block;
+    display: inline-flex;
     margin-left: 50px;
+    justify-content: center;
 }
 
-.section-title-carteira {
-    width: 60%;
-    background-color: #053F3D; /* Fundo verde-azulado para os títulos */
-    color: #eaf2e3; /* Cor do texto do título */
-    padding: 8px;
-    border: 4px solid #ffffff;
-    border-radius: 15px;
-    border-style: outset;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Fonte mais "gamer" para títulos */
-    font-size: xx-large;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    display: inline-block;
-    margin-left: 50px;
-}
 
 .title-carteira {
     color: #053F3D;
@@ -783,20 +789,11 @@ body {
     margin-bottom: 60px;
 }
 
-.card-carteira {
-    width: 99%;
-    background-color: #ffffff; /* Fundo verde-claro/bege para os cards */
-    border: 3px solid #053F3D; /* Borda escura */
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
-    margin-bottom: 60px;
-}
 
 .content-wrapper {
     display: flex;
     gap: 15px; /* Espaço entre inputs e estatísticas */
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .form-inputs {
@@ -863,6 +860,10 @@ body {
 .total-cost {
     background-color: #053F3D;
     color: #ffffff;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
     border: 3px solid #ffffff;
     border-radius: 8px;
     padding: 10px;
@@ -881,6 +882,28 @@ body {
     color: #053F3D;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.calculate-btn {
+    width: 80%; 
+    font-size: 1.2em; 
+    padding: 15px; 
+    margin-top: 20px;
+    border: 2px solid #053F3D;
+    border-radius: 5px;
+}
+
+.button-ir-historico {
+    color: #ffffff;
+    background: #053F3D;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
+    width: 100px;    
+    font-size: xx-large; 
+    padding: 10px 10px; 
+    text-decoration: none;
+}
+
+/* Calculos BIXA */
 
 
 /* CADASTRAR HEIN PROSTITUTA VEM AQUI */
@@ -928,12 +951,20 @@ body {
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
     padding: 8px 30px;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
 }
 
 .login-text {
-    font-size: 0.9rem;
+    font-size: large;
     margin-bottom: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
 }
 
 .foto-de-perfil {
@@ -1016,6 +1047,10 @@ body {
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ffffff;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
     background: #053F3D;
     border-radius: 30px;
     cursor: pointer;
@@ -1051,11 +1086,15 @@ body {
 .welcome-title {
     font-size: 3.5rem;
     font-weight: bold;
-    color: #053F3D;
-    background: #ffffff;
+    color: #ffffff;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
+    background: #053F3D;
     padding: 10px 30px;
     margin: 20px;
-    border: 5px solid #053F3D;
+    border: 5px solid #ffffff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 30px;
     position: relative;
@@ -1077,7 +1116,10 @@ body {
     width: 30%;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #fff;
+    color: #ffffff;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff;
     background: #053F3D;
     padding: 8px 25px;
     border-radius: 30px;
@@ -1148,6 +1190,10 @@ body {
     text-decoration: none;
     text-align: center;
     display: inline-block;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
 }
 
 .button-primary-2 {
@@ -1343,10 +1389,14 @@ body {
     padding: 20px 20px 0;
 }
 
-.back-button {
-    font-size: 1rem;
+.bem-vindo-let {
+    font-size: xx-large;
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
 }
 
 .user-greeting {
@@ -1373,14 +1423,16 @@ body {
 
 .easy-life-box {
     background-color: #ffffff;
-    border: 4px solid #053F3D;
+    border: 15px solid #053F3D;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 50px;
+    border-left-width: thin;
+    border-right-width: thin;
 }
 
 .easy-life-text {
@@ -1392,12 +1444,16 @@ body {
 
 .ribbon {
     background-color: #053F3D;
-    color: #fff;
+    color: #ffffff;
     padding: 5px 25px;
     font-size: 1.8rem;
     font-weight: bold;
     position: relative;
     clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%, 10% 50%);
+    text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
 }
 
 .subtitle {
