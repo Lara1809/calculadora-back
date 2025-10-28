@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.utils import timezone
+from datetime import timedelta
 
 def home_view(request):
     return render(request, 'home.html')
@@ -127,37 +129,49 @@ def logout(request):
 
 @login_required
 def criar_plano(request):
+    nome_plano = "Pé de Meia Turbo"
+    valor_plano = 5.00
+    prazo_plano = 30  # dias
+
+    data_vencimento = timezone.now() + timedelta(days=prazo_plano)
+
+    plano, created = Plano.objects.get_or_create(
+        nome=nome_plano,
+        defaults={
+            "valor": valor_plano,
+            "prazo": data_vencimento,
+            "data_assinatura": timezone.now(), 
+        }
+    )
+
     if request.method == "POST":
-        nome = request.POST.get("nome")
-        valor = request.POST.get("valor")
-        prazo = request.POST.get("prazo")
+        usuario = Usuario.objects.get(user=request.user)
+        usuario.plano = plano
+        usuario.save()
+        messages.success(request, "Você agora faz parte do plano Pé de Meia Turbo!")
+        return redirect('exibir_perfil')
 
-        plano = Plano.objects.create(
-            nome=nome,
-            valor=valor,
-            prazo=prazo,                
-            )
-        
-        return redirect('exibir_perfil')  
+    return render(request, 'criar_plano.html', {'plano': plano})
 
-    return render(request, 'criar_plano.html')
-
-def is_usuario_plano(user):
-    return hasattr(user, 'perfil') and user.perfil.plano is not None
-
-@user_passes_test(is_usuario_plano)
 @login_required
 def exibir_plano(request):
-    planos = Plano.objects.all()
-    return render(request, '', {'planos': planos})
+    usuario = Usuario.objects.get(user=request.user)
+    plano = usuario.plano
 
-@user_passes_test(is_usuario_plano)
+    contexto = {
+        "plano": plano,
+    }
+
+    return render(request, "exibir_plano.html", contexto)
+
 @login_required
 def cancelar_plano(request):
-    usuario = get_object_or_404(Usuario, user=request.user)
+    usuario = Usuario.objects.get(user=request.user)
+
     if request.method == 'POST':
         usuario.plano = None
         usuario.save()
-        messages.success(request, 'Seu plano foi cancelado.')
+        messages.success(request, "Você cancelou o plano Pé de Meia Turbo.")
         return redirect('exibir_perfil')
+
     return render(request, 'cancelar_plano.html', {'plano': usuario.plano})

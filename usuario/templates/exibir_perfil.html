@@ -69,9 +69,10 @@
        </div>
        <div class="info-field" style="margin-top: 20px;">
         {% if usuario.plano %}
-            <a href="{% url 'exibir_plano' %}" class="action-button">Exibir Plano</a>
+            <a href="{% url 'exibir_plano' %}" class="action-button">Exibir Plano</a> <br>
+
         {% else %}
-            <a href="{% url 'criar_plano' %}" class="action-button">Criar Plano</a>
+            <a href="{% url 'criar_plano' %}" class="action-button">Assinar Plano</a>
         {% endif %}
     </div>
        <div class="info-field" style="margin-top: 20px; text-align: center;">
