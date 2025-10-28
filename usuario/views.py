@@ -138,10 +138,6 @@ def criar_plano(request):
             prazo=prazo,                
             )
         
-        if hasattr(request.user, "perfil"):
-            request.user.perfil.plano = plano
-            request.user.perfil.save()
-
         return redirect('exibir_perfil')  
 
     return render(request, 'criar_plano.html')
