@@ -23,7 +23,7 @@
         <section class="logo-section">
             <div class="easy-life-box">
                 <div class="easy-life-text">
-                    <span class="ribbon">EASY LIFE</span>
+                    <span class="ribbon">EASY LIFE</span>  <br> <br>
                     <p class="subtitle">Calculadora de Gastos</p>
                 </div>
                 <img src="{% static 'logo.png' %}" alt="Porquinho-cofre com cartola e calculadora" class="piggy-image-boas">
@@ -64,16 +64,13 @@
                 COMPARAR
             </a>
 
+            <p class="no-account-text-boas">Sem uma categoria especifica:</p>
+            <a href="{% url 'calculos' %}" class="category-button">
+                CALCULAR <span></span>
+            </a>
             
         </section>
-        <div>
-            <p class="no-account-text">Sem uma categoria especifica:</p>
-            <a href="{% url 'calculos' %}" >Calcular</a>
-               
-        </div>
-        <div class="info-field">
-            <a href="{% url 'logout' %}" class="action-button">Sair</a>
-       </div>
+        
         {% endblock %}
     </main>
 

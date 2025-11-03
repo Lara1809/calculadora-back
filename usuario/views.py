@@ -127,6 +127,21 @@ def logout(request):
 
 # plano
 
+def is_plano_ativo(user):
+    if not hasattr(user, 'perfil'):
+        return False
+
+    perfil = user.perfil  # objeto Usuario
+    plano = perfil.plano
+
+    if plano is None:
+        return False
+
+    if plano.prazo >= timezone.now():
+        return True
+
+    return False
+
 @login_required
 def criar_plano(request):
     nome_plano = "Pé de Meia Turbo"
@@ -154,6 +169,7 @@ def criar_plano(request):
     return render(request, 'criar_plano.html', {'plano': plano})
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def exibir_plano(request):
     usuario = Usuario.objects.get(user=request.user)
     plano = usuario.plano
@@ -165,6 +181,7 @@ def exibir_plano(request):
     return render(request, "exibir_plano.html", contexto)
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def cancelar_plano(request):
     usuario = Usuario.objects.get(user=request.user)
 

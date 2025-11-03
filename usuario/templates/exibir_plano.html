@@ -14,11 +14,11 @@
 
 {% if plano %}
     <p><strong>Nome:</strong> {{ plano.nome }}</p>
-    <p><strong>Valor:</strong> R$ {{ plano.valor }}</p>
+    <p><strong>Valor:</strong> R$ {{ plano.valor }} mensal</p>
     <p><strong>Data de Assinatura:</strong> {{ plano.data_assinatura|date:"d/m/Y H:i" }}</p>
-    <p><strong>Vencimento:</strong> {{ plano.prazo|date:"d/m/Y H:i" }}</p>
+    <p><strong>Vencimento:</strong> {{ plano.prazo|date:"d/m/Y H:i" }}</p>   <br>
 {% else %}
-    <p>Você ainda não possui um plano ativo.</p>
+    <p>Você ainda não possui um plano ativo.</p>   
 {% endif %}
 
         <a href="{% url 'cancelar_plano' %}" class="action-button">Cancelar Plano</a>
