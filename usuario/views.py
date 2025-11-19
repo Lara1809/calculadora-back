@@ -58,7 +58,12 @@ def login(request):
 
 @login_required
 def boas_vindas(request):
-    return render(request, 'boas_vindas.html')
+    plano_ativo = is_plano_ativo(request.user)
+
+    contexto = {
+        'plano_ativo': plano_ativo
+    }
+    return render(request, 'boas_vindas.html',contexto )
 
 @login_required
 def exibir_perfil(request, id=None):

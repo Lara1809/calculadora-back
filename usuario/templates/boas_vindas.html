@@ -16,8 +16,11 @@
             <a href="" class="back-button">BEM-VINDO(A)</a>   <br>
             <span class="user-greeting">Olá, {{ user.username }}</span>
             <div class="navbar-nav">
-                <a href="{% url 'exibir_perfil' %}" >Exibir perfil</a> |
-                <a href="{% url 'historico' %}" class="button">Historico</a>
+                <a href="{% url 'exibir_perfil' %}" >Exibir perfil</a>  |
+                {% if plano_ativo %}
+                <a href="{% url 'historico' %}" >Historico</a>
+                {% endif %}
+
             </div>
         </header>
         <section class="logo-section">
@@ -60,18 +63,24 @@
                 EXTRAS
             </a>
 
+            {% if plano_ativo %}
             <a href="{% url 'comparacao' %}" class="category-button full-width-button">
                 COMPARAR
             </a>
+            {% endif %}
 
             <p class="no-account-text-boas">Sem uma categoria especifica:</p>
             <a href="{% url 'calculos' %}" class="category-button">
                 CALCULAR <span></span>
             </a>
+            <div class="info-field">
+                <a href="{% url 'logout' %}" class="action-button-sair-boas">Sair</a>
+            </div>
             
         </section>
         
         {% endblock %}
+    
     </main>
 
 </body>

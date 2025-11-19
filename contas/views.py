@@ -1,11 +1,30 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import Conta, Empresa, Servico, Categoria, Calculo
+from usuario.models import Usuario, Plano
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.utils import timezone
 
 # Create your views here.
+
+def is_plano_ativo(user):
+    if not hasattr(user, 'perfil'):
+        return False
+
+    perfil = user.perfil  # objeto Usuario
+    plano = perfil.plano
+
+    if plano is None:
+        return False
+
+    if plano.prazo >= timezone.now():
+        return True
+
+    return False
+
 
 CATEGORIAS_CALCULO = {
     'casa': ['aluguel', 'agua', 'luz', 'gas', 'internet', 'telefone', 'servicos_prestacoes', 'outros_casa'],
@@ -80,7 +99,6 @@ def calculos(request):
         
         total_despesas = 0
         
-        # Itera sobre o dicionário padronizado para calcular os totais
         for categoria_nome, fields in CATEGORIAS_CALCULO.items():
             total_categoria = 0
             for field in fields:
@@ -88,7 +106,6 @@ def calculos(request):
                 context[field] = value
                 total_categoria += value
             
-            # Adiciona o total da categoria ao contexto (ex: context['total_casa'] = 500)
             context[f'total_{categoria_nome}'] = total_categoria
             total_despesas += total_categoria
         resultado = salario_total - total_despesas
@@ -104,9 +121,10 @@ def calculos(request):
         )
         novo_calculo.save()
 
-    return render(request, 'calculos.html', context)
+    return render(request, 'calculos.html', context,)
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def historico(request):
     calculos_salvos = Calculo.objects.filter(usuario=request.user).order_by('-data_criacao')
     context = {
@@ -115,6 +133,7 @@ def historico(request):
     return render(request, 'historico.html', context)
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def excluir_calculos(request):
     if request.method == 'POST':
         Calculo.objects.filter(usuario=request.user).delete()
@@ -124,6 +143,7 @@ def excluir_calculos(request):
     return redirect('historico')
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def comparacao(request):
     if request.method == 'POST':
         ano = request.POST.get('ano')
