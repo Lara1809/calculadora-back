@@ -15,6 +15,12 @@ def home_view(request):
 
 # usuario 
 
+def relatorio_abnt(request):
+    context = {
+        'titulo': '',
+    }
+    return render(request, '', context)
+
 def cadastrar(request):
     if request.method == 'POST':
         form = CadastrarForm(request.POST, request.FILES)

@@ -40,8 +40,8 @@
 
 .options-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Cria duas colunas */
-    gap: 15px; /* Espaço entre os botões */
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .button-link.full-width {
-    grid-column: 1 / 3; /* Faz o botão de transporte ocupar as duas colunas */
+    grid-column: 1 / 3;
 }
 
 .profile-container {
@@ -90,7 +90,8 @@
     font-style: italic;
 }
 
-/* HOME QUERIDA */
+/* HOME */
+
 body {
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(140deg, #053f3d,#a3b88d,#d2e19d,#053f3d);
@@ -101,6 +102,13 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
+    transform: translateY(20px);    
+    animation: aparecer 2s ease forwards;
+}
+
+.body:hover {
+  transform: scale(1.08);
+  transition: 0.3s;
 }
 
 .button-primary-home, .button-secondary-home {
@@ -147,10 +155,9 @@ body {
     border-style: outset;
 }
 
-/* Estilos para o cabeçalho (header) */
 .header {
     width: 95.4%;
-    max-width: 100; /* Limite a largura para simular a imagem */
+    max-width: 100; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -170,6 +177,13 @@ body {
     0 0 10px #ffffff,
     0 0 20px #ffffff;
     animation: piscaNeon 1.5s infinite;
+    transform: translateY(20px);    
+    animation: aparecer 1s ease forwards;
+}
+
+.header-title:hover {
+  transform: scale(1.08);
+  transition: 0.3s;
 }
 
 .header-nav .nav-button {
@@ -182,8 +196,6 @@ body {
     font-weight: bold;
     border-radius: 5px;
 }
-
-/* Estilos para o conteúdo principal */
 
 .main-content {
     display: flex;
@@ -271,6 +283,13 @@ body {
     color: #053F3D;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 5px;
+    transform: translateY(20px);    
+    animation: aparecer 1s ease forwards;
+}
+
+.subtitle-2:hover {
+  transform: scale(1.08);
+  transition: 0.3s;
 }
 
 .piggy-image-home {
@@ -317,10 +336,8 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* HISTORICO FIA */
+/* HISTORICO */ 
 
-/* --- */
-/* Estilos do cabeçalho da página (Histórico) */
 .header-history {
     width: 100%;
     max-width: 800px;
@@ -336,7 +353,7 @@ body {
 .back-button-historico {
     position: absolute;
     top: -40px;
-    left: -60px;
+    left: -330px;
     font-size: xxx-large;
     text-decoration: none;
     color: #ffffff;
@@ -358,8 +375,6 @@ body {
     margin-bottom: 0px;
 }
 
-/* --- */
-/* Estilos para o conteúdo principal */
 .main-content-history {
     width: 100%;
     max-width: 800px;
@@ -370,8 +385,6 @@ body {
     top: -90px;
 }
 
-/* --- */
-/* Estilos dos botões de controle */
 .top-controls {
     display: flex;
     justify-content: center;
@@ -426,8 +439,6 @@ body {
     font-size: 1.2rem;
 }
 
-/* --- */
-/* Estilos da lista de histórico */
 .history-list {
     background-color: #ffffff;
     border: 3px solid #053f3d;
@@ -493,10 +504,8 @@ body {
     }
 }
 
-/* COMPARAR FOFAH */
+/* COMPARAR */
 
-/* --- */
-/* Estilos do cabeçalho da página (Comparar) */
 .header-compare {
     width: 100%;
     max-width: 600px;
@@ -510,7 +519,7 @@ body {
 .back-button-comparar {
     position: absolute;
     top: 5px;
-    left: 30px;
+    left: -420px;
     font-size: xxx-large;
     text-decoration: none;
     color: #ffffff;
@@ -546,8 +555,7 @@ body {
     align-items: center;
 }
 
-/* --- */
-/* Estilos para o conteúdo principal */
+
 .main-content-compare {
     width: 100%;
     max-width: 600px;
@@ -555,8 +563,6 @@ body {
     box-sizing: border-box;
 }
 
-/* --- */
-/* Estilos da seção de gráficos */
 .chart-section {
     width: 100%;
     background-color: #fff;
@@ -587,8 +593,6 @@ body {
     color: #fafafa;
 }
 
-/* --- */
-/* Estilos da seção de detalhes */
 .details-section {
     width: 100%;
     background-color: #fff;
@@ -605,13 +609,15 @@ body {
 }
 
 .details-title {
-    font-size: 1.5rem;
-    color: #fff;
-    background: linear-gradient(to right, #6a82fb, #4a90e2);
+    font-size: xx-large;
+    color: #ffffff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff;
+    font-weight: 500;
+    background: #053F3D;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     display: inline-block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 .details-content {
@@ -680,10 +686,8 @@ body {
     }
 }
 
-/* CALCULOS BIXA */
+/* CALCULOS */
 
-/* --- */
-/* Estilos do cabeçalho */
 .header-calculator {
     width: 100%;
     max-width: 600px;
@@ -835,19 +839,16 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsividade(CALCULOS BIXA) */
-/* Usando uma fonte pixelada para se assemelhar ao design */
-
 .container {
     width: 100%;
-    max-width: 450px; /* Largura máxima para simular a tela de um celular */
+    max-width: 450px;
     display: inline-block;
 }
 
 .section-title {
     width: 60%;
-    background-color: #053F3D; /* Fundo verde-azulado para os títulos */
-    color: #eaf2e3; /* Cor do texto do título */
+    background-color: #053F3D;
+    color: #eaf2e3;
     text-shadow:
     0 0 5px #ffffff,
     0 0 10px #ffffff,
@@ -856,7 +857,7 @@ body {
     border: 4px solid #ffffff;
     border-radius: 15px;
     border-style: outset;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Fonte mais "gamer" para títulos */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: xx-large;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -873,31 +874,35 @@ body {
 
 .card {
     width: 457px;
-    background-color: #ffffff; /* Fundo verde-claro/bege para os cards */
-    border: 3px solid #053F3D; /* Borda escura */
+    background-color: #ffffff;
+    border: 3px solid #053F3D;
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
+    box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.5);
     margin-bottom: 60px;
 }
 
-
 .content-wrapper {
     display: flex;
-    gap: 15px; /* Espaço entre inputs e estatísticas */
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 15px;
 }
 
 .form-inputs {
     display: flex;
     flex-direction: column;
-    width: 60%; /* Ocupa 60% da largura do card */
+    width: 60%;
 }
 
 .form-inputs label {
-    margin-top: 10px;
     font-weight: bold;
-    color: #053F3D;
+    margin-bottom: 2px;
+    display: block;
+    margin-top: 10px;
+    color: #053f3d;
 }
 
 .infos-carteiras {
@@ -907,14 +912,11 @@ body {
 }
 
 .form-inputs input {
-    background-color: #ffffff;
-    border: 3px solid #053F3D;
-    border-radius: 5px;
-    padding: 8px;
-    font-family: 'VT323', monospace;
-    font-size: 16px;
     width: 100%;
-    box-sizing: border-box; /* Garante que padding não afete a largura total */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .stats {
@@ -927,17 +929,17 @@ body {
     font-size: 20px;
 }
 
-/* Placeholder para o gráfico de pizza */
+
 .chart-placeholder {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     background-image: conic-gradient(#3498db 0% 30%, #e74c3c 30% 55%, #f1c40f 55% 80%, #2ecc71 80% 100%);
-    border: 2px solid #2c3e50;
-    margin: 0 auto; /* Centraliza o gráfico */
+    border: 3px solid #053F3D;
+    margin: 0 auto; 
 }
-
 .legend {
+    display: block;
     list-style: none;
     padding: 0;
     margin-top: 10px;
@@ -946,7 +948,17 @@ body {
 }
 
 .legend li {
-    margin-bottom: 4px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.legend li::before {
+    content: "■";
+    margin-right: 6px;
+    font-size: 18px;
 }
 
 .total-cost {
@@ -966,7 +978,6 @@ body {
     border-style: outset;
 }
 
-/* Estilo específico para o card de "CARTEIRA" */
 .card h3 {
     text-align: center;
     margin: 0;
@@ -976,12 +987,25 @@ body {
 }
 
 .calculate-btn {
-    width: 80%; 
-    font-size: 1.2em; 
-    padding: 15px; 
-    margin-top: 20px;
-    border: 2px solid #053F3D;
-    border-radius: 5px;
+    width: 60%;
+    font-size: larger;
+    padding: 15px;
+    margin-top: 5px;
+    border: 4px solid #ddd;
+    border-radius: 10px;
+    color: #ffffff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+    font-weight: 500;
+    background: #053f3d;
+    border-style: outset;
+    cursor: pointer;    
+    transition: transform 0.3s ease;
+    transition: background 0.3s ease;
+}
+
+.calculate-btn:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.25);
 }
 
 .button-ir-historico {
@@ -1005,16 +1029,26 @@ body {
     background: rgba(255, 255, 255, 0.228);
 }
 
-/* Calculos BIXA */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .stats {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+/* Calculos */
 
 
-/* CADASTRAR HEIN PROSTITUTA VEM AQUI */
+/* CADASTRAR */
 
-/* Container principal com duas colunas */
 .auth-container {
     display: flex;
     flex-direction: row;
-    border-radius: 50px; /* Garante que as bordas arredondadas sejam aplicadas */
+    border-radius: 50px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     align-content: space-around;
     flex-wrap: wrap;
@@ -1022,11 +1056,9 @@ body {
     margin-top: 20px;
 }
 
-/* --- */
-/* Coluna de Login (Esquerda) */
 .login-column {
     flex: 1;
-    background: #053F3D; /* Cor escura do lado esquerdo */
+    background: #053F3D;
     color: #fff;
     padding: 40px 20px;
     display: flex;
@@ -1103,11 +1135,9 @@ body {
     background: rgb(199, 199, 199);
 }
 
-/* --- */
-/* Coluna de Cadastro (Direita) */
 .register-column {
     flex: 1;
-    background-color: #ffffff; /* Cor de fundo clara do lado direito */
+    background-color: #ffffff;
     border: 2px solid #ffffff;
     border-left: none;
     border-top-right-radius: 50px;
@@ -1182,10 +1212,9 @@ body {
     background: rgb(199, 199, 199);
 }
 
-/* Responsividade(HEIN PROSTITUTA VEM AQUI) */
 @media (max-width: 600px) {
     .auth-container {
-        flex-direction: column; /* Empilha as colunas em telas menores */
+        flex-direction: column;
     }
 
     .login-column, .register-column {
@@ -1193,9 +1222,8 @@ body {
     }
 }
 
-/* LOGIN OH DENISE SAI DA LIVE FILHA */
+/* LOGIN */
 
-/* Container principal e seus elementos */
 .login-container {
     width: 90%;
     max-width: 700px;
@@ -1227,14 +1255,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Caixa de login principal */
 .login-box {
     background-color: #fff;
     border: 3px solid #053F3D;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-top: 10px; /* Sobrepõe levemente o título */
+    margin-top: 10px;
 }
 
 .login-title {
@@ -1253,7 +1280,6 @@ body {
     margin: 0 auto 30px;
 }
 
-/* Formulário de login */
 .login-form {
     display: flex;
     flex-direction: column;
@@ -1349,7 +1375,7 @@ body {
     border-style: outset;
 }
 
-/* LOGIN OH DENISE SAI DA LIVE FILHA FIM */
+/* LOGIN */
 
 .profile-container-ed-perfil {
     display: flex;
@@ -1470,7 +1496,6 @@ body {
     margin-bottom: 0px;
 }
 
-/* Seção de foto de perfil */
 .profile-photo-section {
     padding: 20px;
     border-bottom: 3px solid #ffffff;
@@ -1565,7 +1590,6 @@ body {
     cursor: pointer;
 }
 
-/* Seção de informações do perfil */
 .profile-info-section {
     padding: 0 20px;
     margin-top: 10px;
@@ -1704,7 +1728,6 @@ body {
     background: rgba(199, 199, 199);
 }
 
-/* Responsividade(PERFIL FULANO DE TOWN) */
 @media (max-width: 480px) {
     .photo-area {
         flex-direction: column;
@@ -1717,10 +1740,8 @@ body {
     }
 }
 
-/* BOAS VINDAS TICA (reutiliza o fundo dos cálculos)  */
+/* BOAS VINDAS */
 
-/* --- */
-/* Estilos do Cabeçalho */
 .header-dashboard {
     width: 100%;
     max-width: 730px;
@@ -1739,6 +1760,13 @@ body {
     0 0 5px #ffffff,
     0 0 10px #ffffff,
     0 0 20px #ffffff;
+    transform: translateY(20px);    
+    animation: aparecer 2s ease forwards;
+}
+
+.bem-vindo-let:hover {
+  transform: scale(1.08);
+  transition: 0.3s;
 }
 
 .user-greeting {
@@ -1750,8 +1778,6 @@ body {
     0 0 10px #ffffff;
 }
 
-/* --- */
-/* Conteúdo Principal */
 .main-content-dashboard {
     width: 100%;
     max-width: 800px;
@@ -1760,7 +1786,6 @@ body {
     display: inline-block;
 }
 
-/* Bloco do Logo/Título Central */
 .logo-section {
     width: 100%;
     margin-bottom: 20px;
@@ -1808,6 +1833,13 @@ body {
     font-weight: 700;
     color: #053F3D;
     margin-top: 5px;
+    transform: translateY(20px);    
+    animation: aparecer 2s ease forwards;
+}
+
+.subtitle:hover {
+  transform: scale(1.08);
+  transition: 0.3s;
 }
 
 .piggy-image-boas {
@@ -1839,7 +1871,6 @@ body {
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* Botão de Opções */
 .options-menu {
     text-align: center;
     margin-top: 40px;
@@ -1893,6 +1924,7 @@ body {
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.3s ease;
+    border-style: outset;
 }
 
 .action-button-sair-boas:hover {
@@ -1909,10 +1941,10 @@ body {
     0 0 5px #ffffff,
     0 0 10px #ffffff;
     font-family: 'Monstserrat', sans-serif;
-    background: #053F3D;
+    background: linear-gradient(to right, #053F3D, #a3b88d);
     border: 5px solid #ffffff;
     border-radius: 20px;
-    cursor: pointer;
+    cursor: text;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     border-style: outset;
 }
@@ -1921,7 +1953,6 @@ body {
     margin-left: 5px;
 }
 
-/* Grade de Botões de Categorias */
 .category-buttons-grid {
     display: grid;
     gap: 10px;
@@ -1960,7 +1991,7 @@ body {
     border-style: outset;
     cursor: pointer;
     transition: transform 0.3s ease;
-} /* Casa */
+}
 
 .category-button-casa:hover {
     transform: scale(1.1);
@@ -2122,7 +2153,7 @@ body {
 
 .header-plano {
     position: relative;
-    top: -230px;
+    top: -180px;
 }
 
 .content-criar-plano {
@@ -2157,7 +2188,7 @@ body {
 .back-button-cr-pl {
     position: absolute;
     top: -20px;
-    left: -20px;
+    left: -300px;
     font-size: xxx-large;
     text-decoration: none;
     color: #ffffff;

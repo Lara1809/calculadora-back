@@ -6,14 +6,13 @@
     <title>Easy Life - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     {% endblock %}
-
 </head>
 <body>
 
+{% block main %}
     <main class="main-content-dashboard">
-        {% block main %}
         <header class="header-dashboard">
-            <a href="" class="back-button">BEM-VINDO(A)</a>   <br>
+            <h1 class="bem-vindo-let">BEM-VINDO(A)</h1>
             <span class="user-greeting">Olá, {{ user.username }}</span>
             <div class="navbar-nav">
                 <a href="{% url 'exibir_perfil' %}" >Exibir perfil</a>  |
@@ -40,41 +39,43 @@
         </section>
 
         <section class="category-buttons-grid">
-            <a href="{% url 'calculos' %}#casa" class="category-button">
+            <a href="{% url 'calculos' %}#casa" class="category-button-casa">
                 CASA <span></span>
             </a>
-            <a href="{% url 'calculos' %}#educacao" class="category-button">
-                EDUCAÇÃO
+            <a href="{% url 'calculos' %}#educacao" class="category-button-educacao">
+                EDUCAÇÃO <span></span>
             </a>
 
-            <a href="{% url 'calculos' %}#alimentacao" class="category-button">
-                ALIMENTAÇÃO
+            <a href="{% url 'calculos' %}#alimentacao" class="category-button-alimentacao">
+                ALIMENTAÇÃO <span></span>
             </a>
 
-            <a href="{% url 'calculos' %}#saude_e_beleza" class="category-button">
+            <a href="{% url 'calculos' %}#saude_e_beleza" class="category-button-saude-beleza">
                 SAÚDE & BELEZA <span></span>
             </a>
 
-            <a href="{% url 'calculos' %}#transporte" class="category-button">
-                TRANSPORTE
+            <a href="{% url 'calculos' %}#transporte" class="category-button-transporte">
+                TRANSPORTE <span></span>
             </a>
 
-            <a href="{% url 'calculos' %}#extras" class="category-button">
-                EXTRAS
+            <a href="{% url 'calculos' %}#extras" class="category-button-extras">
+                EXTRAS <span></span>
             </a>
 
             {% if plano_ativo %}
-            <a href="{% url 'comparacao' %}" class="category-button full-width-button">
-                COMPARAR
+            <a href="{% url 'comparacao' %}" class="category-button-comparar">
+                COMPARAR <span></span>
             </a>
             {% endif %}
 
+            <div>
             <p class="no-account-text-boas">Sem uma categoria especifica:</p>
-            <a href="{% url 'calculos' %}" class="category-button">
-                CALCULAR <span></span>
-            </a>
+            <a href="{% url 'calculos' %}" class="no-category-button">Calcular</a>
+               
+        </div>
             <div class="info-field">
-                <a href="{% url 'logout' %}" class="action-button-sair-boas">Sair</a>
+            <a href="{% url 'logout' %}" class="action-button-sair-boas">Sair</a>
+
             </div>
             
         </section>

@@ -14,4 +14,5 @@ urlpatterns = [
     path('criar_plano/', views.criar_plano, name='criar_plano'),
     path('exibir_plano/', views.exibir_plano, name='exibir_plano'),
     path('cancelar_plano/', views.cancelar_plano, name='cancelar_plano'),
+    path('relatorio-abnt/', views.relatorio_abnt, name='relatorio_abnt'),
 ]
