@@ -139,15 +139,25 @@ def logout(request):
 # plano
 
 def is_plano_ativo(user):
-    if not hasattr(user, 'perfil'):
+    if not user.is_authenticated:
+        return False
+    
+    try:
+        # Tenta aceder ao perfil (objeto Usuario)
+        usuario = user.perfil 
+    except AttributeError:
+        # Captura o erro que ocorre quando o 'perfil' não está anexado ao User
+        return False
+    except Usuario.DoesNotExist:
+        # Trata o caso de utilizador logado sem objeto Usuario
         return False
 
-    perfil = user.perfil  # objeto Usuario
-    plano = perfil.plano
+    plano = usuario.plano
 
     if plano is None:
         return False
 
+    # Checa a data
     if plano.prazo >= timezone.now():
         return True
 
@@ -165,10 +175,14 @@ def criar_plano(request):
         nome=nome_plano,
         defaults={
             "valor": valor_plano,
-            "prazo": data_vencimento,
             "data_assinatura": timezone.now(), 
         }
     )
+
+    plano.valor = valor_plano # Garantir que o valor está atualizado
+    plano.prazo = data_vencimento # <-- Linha de correção: Renova a expiração!
+    plano.data_assinatura = timezone.now() # <-- Linha de correção: Atualiza a data de assinatura
+    plano.save() # Salva o objeto Plano com a data renovada
 
     if request.method == "POST":
         usuario = Usuario.objects.get(user=request.user)
@@ -180,7 +194,7 @@ def criar_plano(request):
     return render(request, 'criar_plano.html', {'plano': plano})
 
 @login_required
-@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
+@user_passes_test(is_plano_ativo, login_url='/usuario/criar_plano/')
 def exibir_plano(request):
     usuario = Usuario.objects.get(user=request.user)
     plano = usuario.plano
@@ -192,7 +206,7 @@ def exibir_plano(request):
     return render(request, "exibir_plano.html", contexto)
 
 @login_required
-@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
+@user_passes_test(is_plano_ativo, login_url='/usuario/criar_plano/')
 def cancelar_plano(request):
     usuario = Usuario.objects.get(user=request.user)
 
