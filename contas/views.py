@@ -25,7 +25,6 @@ def is_plano_ativo(user):
 
     return False
 
-
 CATEGORIAS_CALCULO = {
     'casa': ['aluguel', 'agua', 'luz', 'gas', 'internet', 'telefone', 'servicos_prestacoes', 'outros_casa'],
     'alimentacao': ['mercado', 'fora', 'hort_frut', 'feira', 'outros_alimentacao'],
@@ -124,7 +123,6 @@ def calculos(request):
     return render(request, 'calculos.html', context,)
 
 @login_required
-@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def historico(request):
     calculos_salvos = Calculo.objects.filter(usuario=request.user).order_by('-data_criacao')
     context = {
@@ -133,7 +131,6 @@ def historico(request):
     return render(request, 'historico.html', context)
 
 @login_required
-@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def excluir_calculos(request):
     if request.method == 'POST':
         Calculo.objects.filter(usuario=request.user).delete()
@@ -143,7 +140,6 @@ def excluir_calculos(request):
     return redirect('historico')
 
 @login_required
-@user_passes_test(is_plano_ativo, login_url='/usuario/selecionar_plano/')
 def comparacao(request):
     if request.method == 'POST':
         ano = request.POST.get('ano')

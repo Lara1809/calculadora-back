@@ -19,7 +19,7 @@ def relatorio_abnt(request):
     context = {
         'titulo': '',
     }
-    return render(request, '', context)
+    return render(request, 'relatorio_abnt.html', context)
 
 def cadastrar(request):
     if request.method == 'POST':
