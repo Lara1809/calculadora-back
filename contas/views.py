@@ -11,11 +11,15 @@ from django.utils import timezone
 # Create your views here.
 
 def is_plano_ativo(user):
-    if not hasattr(user, 'perfil'):
+    if not user.is_authenticated:
         return False
+    
+    try:
+        usuario = user.perfil
+    except Usuario.DoesNotExist:
+        return False 
 
-    perfil = user.perfil  # objeto Usuario
-    plano = perfil.plano
+    plano = usuario.plano
 
     if plano is None:
         return False
@@ -123,6 +127,7 @@ def calculos(request):
     return render(request, 'calculos.html', context,)
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/criar_plano/')
 def historico(request):
     calculos_salvos = Calculo.objects.filter(usuario=request.user).order_by('-data_criacao')
     context = {
@@ -131,6 +136,7 @@ def historico(request):
     return render(request, 'historico.html', context)
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/criar_plano/')
 def excluir_calculos(request):
     if request.method == 'POST':
         Calculo.objects.filter(usuario=request.user).delete()
@@ -140,6 +146,7 @@ def excluir_calculos(request):
     return redirect('historico')
 
 @login_required
+@user_passes_test(is_plano_ativo, login_url='/usuario/criar_plano/')
 def comparacao(request):
     if request.method == 'POST':
         ano = request.POST.get('ano')
