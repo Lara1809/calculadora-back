@@ -15,12 +15,6 @@ def home_view(request):
 
 # usuario 
 
-def relatorio_abnt(request):
-    context = {
-        'titulo': '',
-    }
-    return render(request, 'relatorio_abnt.html', context)
-
 def cadastrar(request):
     if request.method == 'POST':
         form = CadastrarForm(request.POST, request.FILES)
@@ -61,6 +55,13 @@ def login(request):
                 messages.error(request, 'Nome ou senha inválidos.')
 
     return render(request, 'login.html', {'form': form})
+
+@login_required
+def relatorio_abnt(request):
+    context = {
+        'titulo': '',
+    }
+    return render(request, 'relatorio_abnt.html', context)
 
 @login_required
 def boas_vindas(request):

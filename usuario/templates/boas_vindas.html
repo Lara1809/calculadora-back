@@ -15,11 +15,11 @@
             <h1 class="bem-vindo-let">BEM-VINDO(A)</h1>
             <span class="user-greeting">Olá, {{ user.username }}</span>
             <div class="navbar-nav">
-                <a href="{% url 'exibir_perfil' %}" >Exibir perfil</a> 
+                <a href="{% url 'exibir_perfil' %}" class="icone-perfil">Perfil</a>
                 {% if plano_ativo %}
-                    | <a href="{% url 'historico' %}" >Histórico</a> 
+                    <a href="{% url 'historico' %}" class="button-historico">Historico</a>
                 {% else %}
-                    <br> <a href="{% url 'criar_plano' %}" class="link-plano">Assine para Histórico Completo</a>
+                   <br> <br> <a href="{% url 'criar_plano' %}" class="button-historico">Assine para Histórico Completo</a>
                 {% endif %}
 
             </div>
@@ -77,7 +77,7 @@
         </div>
             <div class="info-field">
             <a href="{% url 'logout' %}" class="action-button-sair-boas">Sair</a>
-            <a href ="{% url 'relatorio_abnt' %}" class="link_ir_abnt"> Política e Privacidade</a>
+            <a href ="{% url 'relatorio_abnt' %}" class="link_ir_abnt"> Política de Privacidade</a>
             </div>          
         </section>
     </main>
